@@ -258,7 +258,7 @@ Router.map(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;functio
 
 &lt;p&gt;The styling use the &lt;a href=&#34;https://github.com/spf13/hyde&#34;&gt;Hyde theme&lt;/a&gt; for Hugo which is based on MDO&amp;rsquo;s &lt;a href=&#34;https://github.com/poole/hyde&#34;&gt;package&lt;/a&gt; of the same name.&lt;/p&gt;
 
-&lt;p&gt;Once I&amp;rsquo;ve tidied things up a bit, I&amp;rsquo;ll post the source code on Github.&lt;/p&gt;
+&lt;p&gt;View the source &lt;a href=&#34;https://github.com/baruchlubinsky/homepage&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The website is hosted on S3. Uploading is simple with &lt;a href=&#34;http://s3tools.org&#34;&gt;S3cmd&lt;/a&gt;:
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;s3cmd sync -P &amp;ndash;exclude&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;DS_Store&amp;quot;&lt;/span&gt; public/ s3://baruch.lubinsky.co.za

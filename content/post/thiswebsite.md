@@ -11,7 +11,7 @@ I built this website using [Hugo](http://hugo.spf13.com/). I found it a little t
 
 The styling use the [Hyde theme](https://github.com/spf13/hyde) for Hugo which is based on MDO's [package](https://github.com/poole/hyde) of the same name.
 
-Once I've tidied things up a bit, I'll post the source code on Github.
+View the source [here](https://github.com/baruchlubinsky/homepage).
 
 The website is hosted on S3. Uploading is simple with [S3cmd](http://s3tools.org):
 {{% highlight bash %}}
