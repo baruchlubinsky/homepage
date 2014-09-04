@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> This website &middot; Baruch Lubinsky </title>
+
+   <meta name="description" content="Some notes about building this website."> 
+
+  
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
+</head>
+
+<body class="layout-reverse">
+<nav class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+       
+        <p class="lead">
+          This website
+        </p>
+        
+          
+        
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      <li><a href="/post">Blog</a> </li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="content container">
+		<article class="post">
+			<h1>This website</h1>
+  			<time class="post-date">Tue, Aug 12, 2014</time>
+      		<p>I built this website using <a href="http://hugo.spf13.com/">Hugo</a>. I found it a little tricky to get started, but it is very new software. Now that it is up and running, I&rsquo;m really getting into it.</p>
+
+<p>The styling use the <a href="https://github.com/spf13/hyde">Hyde theme</a> for Hugo which is based on MDO&rsquo;s <a href="https://github.com/poole/hyde">package</a> of the same name.</p>
+
+<p>Once I&rsquo;ve tidied things up a bit, I&rsquo;ll post the source code on Github.</p>
+
+<p>The website is hosted on S3. Uploading is simple with <a href="http://s3tools.org">S3cmd</a>:
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%">s3cmd sync -P &ndash;exclude<span style="color: #666666">=</span><span style="color: #4070a0">&quot;DS_Store&quot;</span> public/ s3://baruch.lubinsky.co.za
+</pre></div></p>
+
+		</article>
+		<hr>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blcodingblog';
+    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/thiswebsite\/';
+    var disqus_title = 'This website';
+    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/thiswebsite\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<hr>
+		
+			<nav class="tags">
+			<h5>Filed under</h5>
+			
+				<a href="/tags/development">development</a>&nbsp;
+			
+				<a href="/tags/golang">golang</a>&nbsp;
+			
+				<a href="/tags/tutorial">tutorial</a>&nbsp;
+			
+		
+	  <div class="acknowledge">
+        <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
+      </div>
+	</div>
+  </body>
+</html>

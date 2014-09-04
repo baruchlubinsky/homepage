@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> EveryREST - Let your users own their data &middot; Baruch Lubinsky </title>
+
+   <meta name="description" content="An extremely simple RESTful server that anyone can deploy on Google App Engine."> 
+
+  
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
+</head>
+
+<body class="layout-reverse">
+<nav class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+       
+        <p class="lead">
+          EveryREST - Let your users own their data
+        </p>
+        
+          <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">Motivation</a></li>
+<li><a href="#toc_1">Introduction</a></li>
+<li><a href="#toc_2">API</a>
+<ul>
+<li><a href="#toc_3">GET /beers/</a></li>
+<li><a href="#toc_4">GET /beers/id</a></li>
+<li><a href="#toc_5">GET /beers?ids[]=1&amp;ids[]=2</a></li>
+<li><a href="#toc_6">POST /beers/</a></li>
+<li><a href="#toc_7">PUT /beers/id</a></li>
+<li><a href="#toc_8">DELETE /beers/id</a></li>
+</ul></li>
+<li><a href="#toc_9">Deploy</a></li>
+<li><a href="#toc_10">Client application</a></li>
+</ul></li>
+</ul>
+</nav>
+        
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      <li><a href="/post">Blog</a> </li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="content container">
+		<article class="post">
+			<h1>EveryREST - Let your users own their data</h1>
+  			<time class="post-date">Thu, Aug 14, 2014</time>
+      		
+
+<h2 id="toc_0">Motivation</h2>
+
+<p>A lot of my work is on cloud applications. Developing software to be hosted in the cloud offers many advantages over purchasing and running your own servers. However it also presents a number of challenges. One of the biggest drawbacks relates to the privacy of users&rsquo; data. A typical approach is to have a multi-tenant data store, such that each user can only access their own data. This architecture has a problem in that the system administrator has access to the whole database and therefore every user&rsquo;s data. The alternative I&rsquo;m proposing here is that the user should be the only person (assuming we can trust the service provider) with access to their data.</p>
+
+<p>Cloud computing services have become very advanced and easy to use. Why not let each user own their own instance of a database and distribute a front-end separately? With that in mind, I developed <a href="https://github.com/baruchlubinsky/everyrest">EveryREST</a>.</p>
+
+<h2 id="toc_1">Introduction</h2>
+
+<p>EveryREST is little more than a RESTful wrapper for the <a href="https://developers.google.com/datastore/">Google Cloud Datastore</a>. By RESTful here I mean designed to be a back-end for <a href="http://emberjs.com/guides/models/">Ember Data</a>, using the <a href="http://emberjs.com/guides/models/the-rest-adapter/">REST Adapter</a>, with minimal configuration. The program does not handle any application logic, that must be done by the client side application (or an intermediate web service). Consequently developers can be confident that the back-end will &ldquo;never&rdquo; have to be updated. Any new features are added to the front-end application, which is shared by all users. The only information about users that needs to be stored centrally is reference to their instance of EveryREST, that is then secured by their Google account.</p>
+
+<p><em>This is a work in progress. I know that the webservice works, but I have not tried to secure it to using Google acocunts yet.</em></p>
+
+<h2 id="toc_2">API</h2>
+
+<p>The web service uses <a href="http://godoc.org/github.com/baruchlubinsky/beerapi/api">beerapi</a> to handle requests. It responds to the following URLs. Where &ldquo;beers&rdquo; is a place holder for any resource name.</p>
+
+<h3 id="toc_3">GET /beers/</h3>
+
+<p>Returns a list of the beer records. Example response:</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%">{
+  <span style="color: #062873; font-weight: bold">&quot;beers&quot;</span>: [
+    {<span style="color: #062873; font-weight: bold">&quot;id&quot;</span>: <span style="color: #4070a0">&quot;1&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;name&quot;</span>: <span style="color: #4070a0">&quot;Castle&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;type&quot;</span>: <span style="color: #4070a0">&quot;Lager&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;comments&quot;</span>:[<span style="color: #4070a0">&quot;1&quot;</span>, <span style="color: #4070a0">&quot;2&quot;</span>]},
+    {<span style="color: #062873; font-weight: bold">&quot;id&quot;</span>: <span style="color: #4070a0">&quot;2&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;name&quot;</span>: <span style="color: #4070a0">&quot;Woodhouse&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;type&quot;</span>: <span style="color: #4070a0">&quot;Ale&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;comments&quot;</span>:[<span style="color: #4070a0">&quot;3&quot;</span>, <span style="color: #4070a0">&quot;5&quot;</span>, <span style="color: #4070a0">&quot;7&quot;</span>]}
+  ]
+}
+</pre></div>
+
+<h3 id="toc_4">GET /beers/id</h3>
+
+<p>Get a single record.</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%">{
+  <span style="color: #062873; font-weight: bold">&quot;beer&quot;</span>: [
+    {<span style="color: #062873; font-weight: bold">&quot;id&quot;</span>: <span style="color: #4070a0">&quot;1&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;name&quot;</span>: <span style="color: #4070a0">&quot;Castle&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;type&quot;</span>: <span style="color: #4070a0">&quot;Lager&quot;</span>, <span style="color: #062873; font-weight: bold">&quot;comments&quot;</span>:[<span style="color: #4070a0">&quot;1&quot;</span>, <span style="color: #4070a0">&quot;2&quot;</span>]},
+  ]
+}
+</pre></div>
+
+<h3 id="toc_5">GET /beers?ids[]=1&amp;ids[]=2</h3>
+
+<p>Get all the specified records, response is the same as that for GET.</p>
+
+<h3 id="toc_6">POST /beers/</h3>
+
+<p>Create a new record. Example request payload:</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%">{
+  <span style="color: #062873; font-weight: bold">&quot;beer&quot;</span>: {<span style="color: #062873; font-weight: bold">&quot;name&quot;</span>:<span style="color: #4070a0">&quot;Castle&quot;</span>,<span style="color: #062873; font-weight: bold">&quot;type&quot;</span>:<span style="color: #4070a0">&quot;Lager&quot;</span>,<span style="color: #062873; font-weight: bold">&quot;comments&quot;</span>:[]}
+}
+</pre></div>
+
+<h3 id="toc_7">PUT /beers/id</h3>
+
+<p>Update the specified record. Request is the same as POST.</p>
+
+<h3 id="toc_8">DELETE /beers/id</h3>
+
+<p>Delete the specified record.</p>
+
+<h2 id="toc_9">Deploy</h2>
+
+<p>Anyone can deploy a version of this web service for themselves.</p>
+
+<ul>
+<li>Set up the <a href="https://developers.google.com/appengine/docs/go/gettingstarted/devenvironment">Go App Engine</a> development environment</li>
+<li>Create an account on <a href="https://appengine.google.com/">App Engine</a></li>
+<li>Register an application, taking note of the ID</li>
+<li>Clone the <a href="https://github.com/baruchlubinsky/everyrest">repository</a></li>
+<li>Replace <code>everyrest</code> with your application ID in <code>app.yaml</code> and <code>dispatch.yaml</code></li>
+<li><code>$ goapp deploy app.yaml</code></li>
+</ul>
+
+<h2 id="toc_10">Client application</h2>
+
+<p>The service doesn&rsquo;t care what kind of application consumes it, and is set up with CORS allowing any IP by default. Checkout my <a href="/post/2014/08/beerdemo">post</a> for an example of a very simple Ember application powered by this server.</p>
+
+		</article>
+		<hr>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blcodingblog';
+    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/everyrest\/';
+    var disqus_title = 'EveryREST - Let your users own their data';
+    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/everyrest\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<hr>
+		
+			<nav class="tags">
+			<h5>Filed under</h5>
+			
+				<a href="/tags/development">development</a>&nbsp;
+			
+				<a href="/tags/golang">golang</a>&nbsp;
+			
+				<a href="/tags/appengine">appengine</a>&nbsp;
+			
+		
+	  <div class="acknowledge">
+        <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
+      </div>
+	</div>
+  </body>
+</html>

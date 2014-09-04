@@ -1,0 +1,30 @@
+nav.sidebar{
+	text-align: right;
+}
+
+time{
+	font-size: smaller;
+	color: rgba(92, 91, 91, 0.7);
+}
+
+summary > h3 {
+	margin-bottom: 0;
+}
+
+h4 > code {
+	color: inherit;
+}
+
+nav#TableOfContents > ul > li > ul > li > ul {
+	display: none;
+}
+
+nav#TableOfContents > ul, nav#TableOfContents > ul > li > ul  {
+	list-style: none;
+}
+
+div.acknowledge {
+	text-align: right;
+	width: 100%;
+	font-size: small;
+}

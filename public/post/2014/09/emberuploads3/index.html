@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> Ember component for secure file upload to S3 &middot; Baruch Lubinsky </title>
+
+   <meta name="description" content="Create a custom file input component that allows files to be uploaded to a private bucket on Amazon Web Services (AWS) Simple Storage Solution (S3)."> 
+
+  
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
+</head>
+
+<body class="layout-reverse">
+<nav class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+       
+        <p class="lead">
+          Ember component for secure file upload to S3
+        </p>
+        
+          <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">Multi-tenant File Storage</a></li>
+<li><a href="#toc_1">Backend API</a></li>
+<li><a href="#toc_2">File chooser</a></li>
+<li><a href="#toc_3">Usage</a></li>
+</ul></li>
+</ul>
+</nav>
+        
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      <li><a href="/post">Blog</a> </li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="content container">
+		<article class="post">
+			<h1>Ember component for secure file upload to S3</h1>
+  			<time class="post-date">Thu, Sep 4, 2014</time>
+      		
+
+<p>Last time I worked with seriously with Ember was before the addition of components (everything was a view). I&rsquo;m enjoying learning it again in its current, much more mature, state. This article is about a component I created based on the standard HTML file input control. The component retrieves <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html">temporary credentials for S3</a> from an API and produces a <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a> object ready to post the selected file.</p>
+
+<h2 id="toc_0">Multi-tenant File Storage</h2>
+
+<p>This project is born out of a need to host sensitive user data on <a href="http://aws.amazon.com/">AWS</a> using <a href="http://aws.amazon.com/s3/">S3</a>. Each user must be certain that their data is protected not only from public access but also from other users of the system. S3 provides functionality to restrict access to the files it hosts. The approach I have taken does not grant anyone access to the bucket. All requests must be temporarily granted permission. For uploading this is achieved using a &ldquo;Presigned Post&rdquo;.</p>
+
+<p>The bucket does not grant access to any user. Rather I create a <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM role</a> that has rights to upload to the bucket. Then let the webserver running the backend API assume that role. The bucket must also allow <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html">CORS</a> requests.</p>
+
+<h2 id="toc_1">Backend API</h2>
+
+<p>The backend I am using here is a <a href="https://github.com/rails-api/rails-api">Rails-API</a> application. Of course any sort of backend will do, Rails is nice here because there is an official <a href="http://docs.aws.amazon.com/AWSRubySDK/latest/frames.html">AWS SDK for Ruby</a>.</p>
+
+<p>The backend must provide the signed data for the POST. In reality it should also authenticate users before doing so. The following code can be used to create the fields that are required:</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020">require</span> <span style="color: #4070a0">&#39;date&#39;</span>
+
+<span style="color: #007020; font-weight: bold">class</span> <span style="color: #0e84b5; font-weight: bold">FilestoreController</span> <span style="color: #666666">&lt;</span> <span style="color: #60add5">ApplicationController</span>
+    <span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">upload</span>
+        s3 <span style="color: #666666">=</span> <span style="color: #517918">AWS</span>:<span style="color: #517918">:S3</span><span style="color: #666666">.</span>new
+        bucket <span style="color: #666666">=</span> s3<span style="color: #666666">.</span>buckets<span style="color: #666666">[</span><span style="color: #60add5">Rails</span><span style="color: #666666">.</span>configuration<span style="color: #666666">.</span>filestore<span style="color: #666666">[</span><span style="color: #517918">:upload</span><span style="color: #666666">]]</span>
+        <span style="color: #007020; font-weight: bold">if</span> <span style="color: #666666">!</span>bucket<span style="color: #666666">.</span>exists? 
+            render <span style="color: #517918">json</span>: {<span style="color: #517918">error</span>: <span style="color: #4070a0">&quot;Upload bucket </span><span style="color: #70a0d0; font-style: italic">#{</span>bucket<span style="color: #666666">.</span>name<span style="color: #70a0d0; font-style: italic">}</span><span style="color: #4070a0"> does not exist.&quot;</span>}, <span style="color: #517918">status</span>: <span style="color: #40a070">404</span>
+            <span style="color: #007020; font-weight: bold">return</span>
+        <span style="color: #007020; font-weight: bold">end</span>
+        access_key_id <span style="color: #666666">=</span> <span style="color: #60add5">AWS</span><span style="color: #666666">.</span>config<span style="color: #666666">.</span>credentials<span style="color: #666666">[</span><span style="color: #517918">:access_key_id</span><span style="color: #666666">]</span>
+        policy <span style="color: #666666">=</span> bucket<span style="color: #666666">.</span>presigned_post({<span style="color: #517918">expires</span>: <span style="color: #60add5">Time</span><span style="color: #666666">.</span>now<span style="color: #666666">.</span>utc <span style="color: #666666">+</span> <span style="color: #40a070">60</span><span style="color: #666666">*</span><span style="color: #40a070">60</span>})
+        form <span style="color: #666666">=</span> policy<span style="color: #666666">.</span>fields
+        render <span style="color: #517918">json</span>: {<span style="color: #517918">form</span>: {<span style="color: #517918">url</span>: policy<span style="color: #666666">.</span>url<span style="color: #666666">.</span>to_s, <span style="color: #517918">fields</span>: {
+                <span style="color: #4070a0">&quot;signature&quot;</span> <span style="color: #666666">=&gt;</span> form<span style="color: #666666">[</span><span style="color: #4070a0">&#39;signature&#39;</span><span style="color: #666666">]</span>,
+                <span style="color: #4070a0">&quot;policy&quot;</span> <span style="color: #666666">=&gt;</span> form<span style="color: #666666">[</span><span style="color: #4070a0">&#39;policy&#39;</span><span style="color: #666666">]</span>,
+                <span style="color: #4070a0">&quot;access_key_id&quot;</span> <span style="color: #666666">=&gt;</span> access_key_id,
+            }}}
+    <span style="color: #007020; font-weight: bold">end</span>
+<span style="color: #007020; font-weight: bold">end</span>
+</pre></div>
+
+<p>This code uses the SDK to calculate the policy and signature fields as required. (The documentation about this is very confusing but it seems that this is enough.) For added security, the policy can made more specific.</p>
+
+<p>I like to host my Ember application separately from the backend. In that case you must have your Rails application set up for CORS. A nice simple way to do this is in the application controller.</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">class</span> <span style="color: #0e84b5; font-weight: bold">ApplicationController</span> <span style="color: #666666">&lt;</span> <span style="color: #517918">ActionController</span>:<span style="color: #517918">:API</span>
+    before_filter <span style="color: #517918">:cors</span>
+
+    <span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">cors</span>
+        response<span style="color: #666666">.</span>headers<span style="color: #666666">.</span>merge! <span style="color: #4070a0">&#39;Access-Control-Allow-Origin&#39;</span> <span style="color: #666666">=&gt;</span> <span style="color: #4070a0">&#39;*&#39;</span>, <span style="color: #4070a0">&#39;Access-Control-Allow-Methods&#39;</span> <span style="color: #666666">=&gt;</span> <span style="color: #4070a0">&#39;POST, PUT, GET, DELETE&#39;</span>, <span style="color: #4070a0">&#39;Access-Control-Allow-Headers&#39;</span> <span style="color: #666666">=&gt;</span> <span style="color: #4070a0">&#39;Origin, Accept, Content-Type&#39;</span>
+    <span style="color: #007020; font-weight: bold">end</span>
+<span style="color: #007020; font-weight: bold">end</span>
+</pre></div>
+
+<h2 id="toc_2">File chooser</h2>
+
+<p>I wanted to create a component that could be used a &ldquo;drop in replacement&rdquo; for <code>&lt;input type=&quot;file&quot;&gt;</code>. So that it could be used withing existing javascript solutions for file uploads. This solution doesn&rsquo;t realise that perfectly, but I like the way that it uses an existing HTML element.</p>
+
+<p>The component is defined (in an <a href="http://www.ember-cli.com/">Ember-CLI</a> project) in <code>app/components/s3-upload.js</code>:</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+
+<span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Ember.Component.extend({
+    tagName<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;input&#39;</span>,
+    type<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;file&#39;</span>,
+    attributeBindings<span style="color: #666666">:</span> [<span style="color: #4070a0">&#39;disabled&#39;</span>, <span style="color: #4070a0">&#39;alt&#39;</span>, <span style="color: #4070a0">&#39;type&#39;</span>],
+    folder<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;&#39;</span>,
+    didInsertElement<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+        <span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
+        self.set(<span style="color: #4070a0">&#39;disabled&#39;</span>, <span style="color: #007020; font-weight: bold">true</span>);
+        self.set(<span style="color: #4070a0">&#39;alt&#39;</span>, <span style="color: #4070a0">&#39;Authenticating...&#39;</span>);
+        Ember.$.ajax(<span style="color: #4070a0">&#39;http://url.for.backend/upload_form&#39;</span>).then(
+            <span style="color: #007020; font-weight: bold">function</span>(response) {
+                self.set(<span style="color: #4070a0">&#39;disabled&#39;</span>, <span style="color: #007020; font-weight: bold">false</span>);
+                self.set(<span style="color: #4070a0">&#39;alt&#39;</span>, <span style="color: #4070a0">&#39;Select a file to upload.&#39;</span>);
+                self.set(<span style="color: #4070a0">&#39;policy&#39;</span>, response.form);
+            },
+            <span style="color: #007020; font-weight: bold">function</span>(response) {
+                <span style="color: #007020; font-weight: bold">this</span>.set(<span style="color: #4070a0">&#39;alt&#39;</span>, <span style="color: #4070a0">&#39;Unable to connect with S3.&#39;</span>);
+            }
+        );
+    },
+    change<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+        <span style="color: #007020; font-weight: bold">var</span> policy <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>.get(<span style="color: #4070a0">&#39;policy&#39;</span>);
+        <span style="color: #007020; font-weight: bold">var</span> form <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">new</span> FormData();
+        <span style="color: #007020; font-weight: bold">var</span> input <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>.get(<span style="color: #4070a0">&#39;element&#39;</span>);
+        <span style="color: #007020; font-weight: bold">var</span> folder <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>.get(<span style="color: #4070a0">&#39;folder&#39;</span>);
+        <span style="color: #007020; font-weight: bold">var</span> key <span style="color: #666666">=</span> folder <span style="color: #666666">+</span> input.value.split(<span style="color: #235388">/(\\|\/)/g</span>).pop();
+        
+        form.append(<span style="color: #4070a0">&quot;key&quot;</span>, key);
+        form.append(<span style="color: #4070a0">&quot;signature&quot;</span>, policy.fields.signature);
+        form.append(<span style="color: #4070a0">&quot;AWSAccessKeyId&quot;</span>, policy.fields.access_key_id);
+        form.append(<span style="color: #4070a0">&quot;policy&quot;</span>, policy.fields.policy);
+        form.append(<span style="color: #4070a0">&quot;file&quot;</span>, input.files[<span style="color: #40a070">0</span>]);
+        
+        <span style="color: #007020; font-weight: bold">this</span>.set(<span style="color: #4070a0">&#39;ajaxOptions&#39;</span>, {
+            url<span style="color: #666666">:</span> policy.url,
+            data<span style="color: #666666">:</span> form,
+            contentType<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">false</span>,
+            type<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;POST&#39;</span>,
+            processData<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">false</span>,
+            }
+        );
+    }
+});
+</pre></div>
+
+<p>No template is required. The component reveals an <code>ajaxOptions</code> property that contains all the data required to upload the file. Similar to the original element, the upload must be executed externally.</p>
+
+<p>The <code>didInsertElement</code> event sends a request to the backend to retrieve the presigned fields that are saved in the components &lsquo;policy&rsquo; property. Then when a file is selected a <code>FormData</code> object is created. S3 expects the uploaded file to be in the <code>file</code> field. The form is added to a hash of AJAx options ready to be posted. <code>processData</code> must be false to prevent jQuery from attempting to parse the file.</p>
+
+<h2 id="toc_3">Usage</h2>
+
+<p>The file selector is designed to be usable in various ways. The most simple one I came up with wraps it in another component including an upload button. The template for that component is:</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020">{{</span><span style="color: #bb60d5">s3-upload</span> <span style="color: #bb60d5">ajaxOptions</span><span style="color: #666666">=</span><span style="color: #bb60d5">formToPost</span> <span style="color: #bb60d5">disabled</span><span style="color: #666666">=</span><span style="color: #bb60d5">disabled</span> <span style="color: #bb60d5">folder</span><span style="color: #666666">=</span><span style="color: #bb60d5">folder</span><span style="color: #007020">}}</span>
+<span style="color: #062873; font-weight: bold">&lt;button</span> <span style="color: #007020">{{</span><span style="color: #bb60d5">action</span> <span style="color: #4070a0">&#39;doUpload&#39;</span><span style="color: #007020">}}</span> <span style="color: #007020">{{</span><span style="color: #bb60d5">bind-attr</span> <span style="color: #bb60d5">disabled</span><span style="color: #666666">=</span><span style="color: #bb60d5">disabled</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&gt;</span>Upload<span style="color: #062873; font-weight: bold">&lt;/button&gt;</span>
+</pre></div>
+
+<p>This binds the disabled properties to eachother so that the upload button is disabled while the file input is disabled. The ajax options containing the file data are bound to <code>formToPost</code>. The code for this wrapper is:</p>
+
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+
+<span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Ember.Component.extend({
+    actions<span style="color: #666666">:</span> {
+        doUpload<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+            <span style="color: #007020; font-weight: bold">var</span> opts <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>.get(<span style="color: #4070a0">&#39;formToPost&#39;</span>);
+            Ember.$.ajax(opts);
+        }
+    }
+});
+</pre></div>
+
+<p>The hash prepared in the <code>s3-upload</code> is ready to be used by <code>$.ajax</code>. This is a minimal implementation of that component. It is designed to be usable within a more complicated user interface - there are already many good javascript solutions out there. Of course the results of the ajax call should be handled.</p>
+
+		</article>
+		<hr>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blcodingblog';
+    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/09\/emberuploads3\/';
+    var disqus_title = 'Ember component for secure file upload to S3';
+    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/09\/emberuploads3\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<hr>
+		
+			<nav class="tags">
+			<h5>Filed under</h5>
+			
+				<a href="/tags/development">development</a>&nbsp;
+			
+				<a href="/tags/ember">ember</a>&nbsp;
+			
+				<a href="/tags/aws">aws</a>&nbsp;
+			
+				<a href="/tags/rails">rails</a>&nbsp;
+			
+		
+	  <div class="acknowledge">
+        <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
+      </div>
+	</div>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+==================================================================
+https://keybase.io/baruchlubinsky
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://baruch.lubinsky.co.za
+  * I am baruchlubinsky (https://keybase.io/baruchlubinsky) on keybase.
+  * I have a public key with fingerprint EE74 3C14 AE52 8E3A 9B1F  3AA9 2324 6E49 EB6B 3333
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "ee743c14ae528e3a9b1f3aa923246e49eb6b3333",
+            "host": "keybase.io",
+            "key_id": "23246e49eb6b3333",
+            "uid": "ab597a9f1bcefb38bd35115286b2a700",
+            "username": "baruchlubinsky"
+        },
+        "service": {
+            "hostname": "baruch.lubinsky.co.za",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1407795374,
+    "expire_in": 157680000,
+    "prev": "85d2687f66e243f6ae70351ea614c42494167ab4668db420cfb163e3fcfad506",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v0.3.1
+Comment: https://keybase.io/crypto
+
+yML+AnicO8LLzMDFqKyS5/k629iY8fRBhlKG4JcO66qVkvJTKpWsqpWyU8FUWmZe
+empRQVFmXomSlVJqqrmJcbKhSWKqqZFFqnGiZZJhmnFioqWRsZGJWaqJZWqSWZIx
+ECjpKGXkF4N0AI1JSixO1cvMB4oBOfGZKUBRLOpLwRKJSaaW5omWaYZJyalpScYW
+SSnGpoaGQMvMkowSzQ0MQAqLU4vyEnNTgaqTEotKkzNySpMy84qzK5VqdZSAcmWZ
+yakgl4McgKJOD6ZQLzlfryoRaFRBUX5JfnJ+DlBJRklJgRXIhJLKApCW8tSkeKhh
+8UBdKcBgAGooSy0qzszPU7IyBKpMLskEmW5oYmBubmlqbG6io5RaUZBZlBqfCVJh
+am5mYQAEIGtSy4BGWpimGJlZmKeZmaUamRinmSWmmhsAfZeaaGZokmxiZGJpYmhm
+nphkYmZmkZJkYmSQnJZkaGacapyWnJaYYmpgpgTyXmFevpKVMdCZielAI4sz0/MS
+S0qLUpVqDx2MYWFg5GJgY2UCRSQDF6cALHpf3RFgOPikV+di+STLy/3WdSfOfOUP
+Xcp4teXPOh3djVpva+3TVtuYs564b6Q1QXK2kPmvv0++P0o790XTqyHiSsOmt1fE
+hWsnXF61ydExJz+2+STb15crN2dpnOj9JhchLDsx5MzSmEs19eyvmDncqpd9ERf2
+3bR5pZFbrNF+rm/Bt5d8d5ecdekmw6Rfss+OrKmyjNgT/NLQlMlmZY5o9j3GLqsF
+/4s3n6uqeNV0wTFUzbWySm+/6toy6VUBrl68e0XUDx0/fOFQo6BZtU35NpvzceUP
+Apl47v+fmbGm2mnblxNvpOMeLVjP250e53nFsWPz0gnuAVV+U6c4P2y+/VvqAivT
+hzOiKaxhi0+Ytd1duNVqbomgcfhfIRbzYvN96kLJrwOrn2+cce1ZTwLfq8m378i9
+ZLi0U7xy95sUtRO1s1tvrr8nsvtJqPTm/BzpqKgXLk0nPILD+qv/Sk4SK/QLNJ1V
+d3eG85tzO79b7kmMPHJ/dWZfyoOVXDuD7z7PMbBX/rGIv2iJ+NPP71Z+ip9zmuf5
+At65DO2vX1ZG5DMZ+W1ya8te5r5nueXlJO/r4UrzAt54xpV7Ma3fvWj1jL2BG2Yl
+dO758Cjqv+n1qOeKlnwX0/ZbXtspGPvh/hn/137Cf27ZP/9zL3XVkv+K2+UTL3SK
+5c7X+vai8kmtiNSl8FD/hw9uv9c+eNvm2X+1691LPjGuzfvVPuco8/F1+f8AhPWg
+0Q==
+=FmPD
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/baruchlubinsky
+
+==================================================================

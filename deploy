@@ -1,0 +1,1 @@
+s3cmd sync -P --exclude=DS_Store public/ s3://baruch.lubinsky.co.za
