@@ -5,8 +5,6 @@
       		{{ .Content }}
 		</article>
 		<hr>
-		{{ template "_internal/disqus.html" . }}
-		<hr>
 		{{ with .Params.tags }}
 			<nav class="tags">
 			<h5>Filed under</h5>
@@ -14,4 +12,6 @@
 				<a href="/tags/{{.}}">{{.}}</a>&nbsp;
 			{{ end }}
 		{{ end }}
+		<hr>
+		{{ template "_internal/disqus.html" . }}
 {{ template "partials/footer.html" . }}

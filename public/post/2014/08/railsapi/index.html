@@ -9,13 +9,13 @@
 
   <title> Rails API backed by Postgres &middot; Baruch Lubinsky </title>
 
-   <meta name="description" content="Steps to create a Rails API, usiong rails-api and Postrgres as a database."> 
+   <meta name="description" content="Steps to create a Rails API, using rails-api and Postrgres as a database."> 
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -35,7 +35,12 @@
           Rails API backed by Postgres
         </p>
         
-          
+          <nav id="TableOfContents">
+<ul>
+<li><a href="#toc_0">Development</a></li>
+<li><a href="#toc_1">Production</a></li>
+</ul>
+</nav>
         
       
     </div>
@@ -51,28 +56,58 @@
 		<article class="post">
 			<h1>Rails API backed by Postgres</h1>
   			<time class="post-date">Wed, Aug 20, 2014</time>
-      		<p>$: brew install postgresql
-    $: gem install pg
-    $: gem isntall rails-api
-    $: rails-api new app</p>
+      		
+
+<p>I&rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.</p>
+
+<p>Here are the step for setting up a <a href="https://github.com/rails-api/rails-api">Rails-API</a> project with a <a href="http://www.postgresql.org/">PostgreSQL</a>.</p>
+
+<h1 id="toc_0">Development</h1>
+
+<p>Install PostgreSQL using <a href="http://brew.sh/">Homebrew</a> and create a user for your application.</p>
+
+<pre><code>$: brew install postgresql
+$: psql -d postgres
+posgres=#: create role 'username' with createdb login password 'password';
+posgres=#: ctrl+d
+</code></pre>
+
+<p>Follow the instructions from Homebrew to cause Postres to run at start up, otherwise run:</p>
+
+<pre><code>$: postgres -D /usr/local/var/postgres
+</code></pre>
+
+<p>Create the Rails-API project:</p>
+
+<pre><code>$: gem isntall rails-api
+$: gem install pg
+$: rails-api new app
+</code></pre>
+
+<p>Edit <code>config/database.yml</code> with username and password. And set the adapter to be &lsquo;postgresql&rsquo;. Then use Rails generators and ActiveModel as usual.</p>
+
+<pre><code>$: cd app
+$: rails g model Organisation name:string
+$: rake db:migrate
+$: rake db:setup 
+</code></pre>
+
+<h1 id="toc_1">Production</h1>
+
+<p><a href="http://aws.amazon.com/">Amazon Web Services</a> makes it very easy to host Rails applications using <a href="http://aws.amazon.com/opsworks/">OpsWorks</a> and <a href="http://aws.amazon.com/rds/">RDS</a>.</p>
+
+<p>Simply create a Postgres instance in RDS for use by your API. I&rsquo;ve found it helpful (although I don&rsquo;t believe it should be strictly necessary) to set the database name at creation time.</p>
+
+<p>Then in OpsWorks create a <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-rails.html">Rails App Server Layer</a>. Add an App with your API code and connect it to your RDS instance with appropriate authentication settings.</p>
+
+<p>At the time of writing there is a <a href="https://github.com/aws/opsworks-cookbooks/issues/136">bug</a> in OpsWorks that requires you to set the database adapter explicitly at deploy time. In the OpsWorks console, when deploying the Rails app, add the following &ldquo;Custom JSON&rdquo;:</p>
+
+<pre><code>{&quot;deploy&quot;:{&quot;api&quot;:{&quot;database&quot;:{&quot;adapter&quot;:&quot;postgresql&quot;,&quot;type&quot;:&quot;postrgesql&quot;}}}} 
+</code></pre>
+
+<p>Where <code>api</code> is the name you&rsquo;ve given to your app in OpsWorks.</p>
 
 		</article>
-		<hr>
-		<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/08\/railsapi\/';
-    var disqus_title = 'Rails API backed by Postgres';
-    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/08\/railsapi\/';
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 		<hr>
 		
 			<nav class="tags">
@@ -86,13 +121,28 @@
 			
 				<a href="/tags/tutorial">tutorial</a>&nbsp;
 			
+				<a href="/tags/aws">aws</a>&nbsp;
+			
 		
+		<hr>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blcodingblog';
+    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/railsapi\/';
+    var disqus_title = 'Rails API backed by Postgres';
+    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/railsapi\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	  <div class="acknowledge">
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  <script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+  </body>
 </html>

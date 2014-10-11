@@ -7,15 +7,15 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title> This website &middot; Baruch Lubinsky </title>
+  <title> Writing generic Go code &middot; Baruch Lubinsky </title>
 
-   <meta name="description" content="Some notes about building this website."> 
+   <meta name="description" content="Golang doesn&#39;t have generics like other languages, but you can still write generic code."> 
 
   
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -32,7 +32,7 @@
     <div class="sidebar-about">
        
         <p class="lead">
-          This website
+          Writing generic Go code
         </p>
         
           
@@ -49,17 +49,9 @@
 
     <div class="content container">
 		<article class="post">
-			<h1>This website</h1>
-  			<time class="post-date">Tue, Aug 12, 2014</time>
-      		<p>I built this website using <a href="http://hugo.spf13.com/">Hugo</a>. I found it a little tricky to get started, but it is very new software. Now that it is up and running, I&rsquo;m really getting into it.</p>
-
-<p>The styling use the <a href="https://github.com/spf13/hyde">Hyde theme</a> for Hugo which is based on MDO&rsquo;s <a href="https://github.com/poole/hyde">package</a> of the same name.</p>
-
-<p>View the source <a href="https://github.com/baruchlubinsky/homepage">here</a>.</p>
-
-<p>The website is hosted on S3. Uploading is simple with <a href="http://s3tools.org">S3cmd</a>:
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%">s3cmd sync -P &ndash;exclude<span style="color: #666666">=</span><span style="color: #4070a0">&quot;DS_Store&quot;</span> public/ s3://baruch.lubinsky.co.za
-</pre></div></p>
+			<h1>Writing generic Go code</h1>
+  			<time class="post-date">Thu, Aug 14, 2014</time>
+      		<p>This article is about the webservice <a href="https://github.com/baruchlubinsky/beerapi">beerapi</a>. That program is best documented by <a href="http://godoc.org/github.com/baruchlubinsky/beerapi/api">godoc</a>, so I&rsquo;m writting here about the lessons in generic Go code that I learnt while developing it.</p>
 
 		</article>
 		<hr>
@@ -78,9 +70,9 @@
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/thiswebsite\/';
-    var disqus_title = 'This website';
-    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/thiswebsite\/';
+    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/08\/beerapi\/';
+    var disqus_title = 'Writing generic Go code';
+    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/08\/beerapi\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -94,5 +86,8 @@
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  </body>
+  <script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

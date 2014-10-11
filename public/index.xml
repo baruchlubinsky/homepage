@@ -150,6 +150,65 @@
     </item>
     
     <item>
+      <title>Rails API backed by Postgres</title>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
+      <author>Baruch Lubinsky</author>
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;
+
+&lt;p&gt;Here are the step for setting up a &lt;a href=&#34;https://github.com/rails-api/rails-api&#34;&gt;Rails-API&lt;/a&gt; project with a &lt;a href=&#34;http://www.postgresql.org/&#34;&gt;PostgreSQL&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Development&lt;/h1&gt;
+
+&lt;p&gt;Install PostgreSQL using &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; and create a user for your application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$: brew install postgresql
+$: psql -d postgres
+posgres=#: create role &#39;username&#39; with createdb login password &#39;password&#39;;
+posgres=#: ctrl+d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Follow the instructions from Homebrew to cause Postres to run at start up, otherwise run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$: postgres -D /usr/local/var/postgres
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the Rails-API project:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$: gem isntall rails-api
+$: gem install pg
+$: rails-api new app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit &lt;code&gt;config/database.yml&lt;/code&gt; with username and password. And set the adapter to be &amp;lsquo;postgresql&amp;rsquo;. Then use Rails generators and ActiveModel as usual.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$: cd app
+$: rails g model Organisation name:string
+$: rake db:migrate
+$: rake db:setup 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Production&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://aws.amazon.com/&#34;&gt;Amazon Web Services&lt;/a&gt; makes it very easy to host Rails applications using &lt;a href=&#34;http://aws.amazon.com/opsworks/&#34;&gt;OpsWorks&lt;/a&gt; and &lt;a href=&#34;http://aws.amazon.com/rds/&#34;&gt;RDS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Simply create a Postgres instance in RDS for use by your API. I&amp;rsquo;ve found it helpful (although I don&amp;rsquo;t believe it should be strictly necessary) to set the database name at creation time.&lt;/p&gt;
+
+&lt;p&gt;Then in OpsWorks create a &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-rails.html&#34;&gt;Rails App Server Layer&lt;/a&gt;. Add an App with your API code and connect it to your RDS instance with appropriate authentication settings.&lt;/p&gt;
+
+&lt;p&gt;At the time of writing there is a &lt;a href=&#34;https://github.com/aws/opsworks-cookbooks/issues/136&#34;&gt;bug&lt;/a&gt; in OpsWorks that requires you to set the database adapter explicitly at deploy time. In the OpsWorks console, when deploying the Rails app, add the following &amp;ldquo;Custom JSON&amp;rdquo;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{&amp;quot;deploy&amp;quot;:{&amp;quot;api&amp;quot;:{&amp;quot;database&amp;quot;:{&amp;quot;adapter&amp;quot;:&amp;quot;postgresql&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;postrgesql&amp;quot;}}}} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;api&lt;/code&gt; is the name you&amp;rsquo;ve given to your app in OpsWorks.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>EveryREST - Let your users own their data</title>
       <link>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</link>
       <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
