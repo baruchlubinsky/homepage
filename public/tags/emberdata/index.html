@@ -12,10 +12,10 @@
   
 
   
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -23,7 +23,7 @@
   <link rel="shortcut icon" href="/favicon.ico">
 
   
-  <link href="http://baruch.lubinsky.co.za/tags/emberdata/index.xml" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
+  <link href="http://localhost:1313/tags/emberdata/index.xml" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
 </head>
 
 <body class="layout-reverse">
@@ -50,7 +50,7 @@
     	<h1>Coding blog</h1>
   		<ul class="posts">
       	
-      		<li><span><a href="http://baruch.lubinsky.co.za/post/2014/08/beerdemo/">Getting started with Ember and Ember Data using Ember CLI</a></span> <time class="pull-right post-list">Wed, Aug 13, 2014</time></li>
+      		<li><span><a href="http://localhost:1313/post/2014/08/beerdemo/">Getting started with Ember and Ember Data using Ember CLI</a></span> <time class="pull-right post-list">Wed, Aug 13, 2014</time></li>
       	
   		</ul>
   	</nav>
@@ -58,5 +58,8 @@
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  </body>
+  <script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

@@ -3,7 +3,7 @@
   <channel>
       <title>Emberdata on Baruch Lubinsky </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://baruch.lubinsky.co.za/tags/emberdata/index.xml</link>
+    <link>http://localhost:1313/tags/emberdata/index.xml</link>
     <language>en-us</language>
     <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Getting started with Ember and Ember Data using Ember CLI</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</link>
+      <link>http://localhost:1313/post/2014/08/beerdemo/</link>
       <pubDate>Wed, 13 Aug 2014 18:38:22 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</guid>
+      <guid>http://localhost:1313/post/2014/08/beerdemo/</guid>
       <description>
 
 &lt;p&gt;This article describes a minimal &lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember&lt;/a&gt; application. Ember, like &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, is designed with a philosophy of convention over configuration. This demo is designed to demonstrate how little code is required to create a functional data driven website by harnessing &lt;a href=&#34;http://emberjs.com/guides/models/&#34;&gt;Ember Data&lt;/a&gt; and the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/&#34;&gt;REST Adapter&lt;/a&gt;.&lt;/p&gt;

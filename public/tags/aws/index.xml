@@ -3,7 +3,7 @@
   <channel>
       <title>Aws on Baruch Lubinsky </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://baruch.lubinsky.co.za/tags/aws/index.xml</link>
+    <link>http://localhost:1313/tags/aws/index.xml</link>
     <language>en-us</language>
     <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Ember component for secure file upload to S3</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</link>
+      <link>http://localhost:1313/post/2014/09/emberuploads3/</link>
       <pubDate>Thu, 04 Sep 2014 17:42:00 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</guid>
+      <guid>http://localhost:1313/post/2014/09/emberuploads3/</guid>
       <description>
 
 &lt;p&gt;Last time I worked with seriously with Ember was before the addition of components (everything was a view). I&amp;rsquo;m enjoying learning it again in its current, much more mature, state. This article is about a component I created based on the standard HTML file input control. The component retrieves &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html&#34;&gt;temporary credentials for S3&lt;/a&gt; from an API and produces a &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/FormData&#34;&gt;FormData&lt;/a&gt; object ready to post the selected file.&lt;/p&gt;
@@ -151,10 +151,10 @@
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <link>http://localhost:1313/post/2014/08/railsapi/</link>
       <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
+      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;

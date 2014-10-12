@@ -3,18 +3,44 @@
   <channel>
       <title>Recent Content on Baruch Lubinsky </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://baruch.lubinsky.co.za/index.xml</link>
+    <link>http://localhost:1313/index.xml</link>
     <language>en-us</language>
     <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
-    <updated>Thu, 04 Sep 2014 17:42:00 UTC</updated>
+    <updated>Sat, 11 Oct 2014 08:42:59 UTC</updated>
+    
+    <item>
+      <title>A discussion on design patterns from the perspective of Ember.js and Ruby on Rails.</title>
+      <link>http://localhost:1313/post/2014/10/mvc/</link>
+      <pubDate>Sat, 11 Oct 2014 08:42:59 UTC</pubDate>
+      <author>Baruch Lubinsky</author>
+      <guid>http://localhost:1313/post/2014/10/mvc/</guid>
+      <description>&lt;p&gt;Modern software development is all about frameworks. The vast majority of projects can be built on top of a vast amount of pre-existing work. Who ever stops to think about the percentage of lines of code in their Rails project that they wrote themselves? These frameworks have made it spectacularly easy to produce very complex applications. Consider an iOS app, written in a weekend by a twelve year old, that goes on to be downloaded a million times. But they have also made us lazy and dependent. Not that a developer should reinvent the wheel, but lazy to learn how the frameworks are designed in order to understand their best usage, and limitations.&lt;/p&gt;
+
+&lt;p&gt;Doing modern web (and occasional mobile app) development, I&amp;rsquo;m constantly working with MVC frameworks. &lt;a href=&#34;http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller&#34;&gt;Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces.&lt;/a&gt; The key word in that definition is &amp;ldquo;pattern&amp;rdquo;. MVC is not a set of rules, its a suggestion. You can implement the pattern without using the words &amp;ldquo;model&amp;rdquo;, &amp;ldquo;view&amp;rdquo;, &amp;ldquo;controller&amp;rdquo; and you can have classes with those names without implementing the pattern. I think that it is essential for a software developer to be aware of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Design_pattern&#34;&gt;design pattern&lt;/a&gt; she is using.&lt;/p&gt;
+
+&lt;p&gt;Its easy to to get the impression that MVC is the only reasonable way to build a data driven user interface. Especially web sites. A quick look at this &lt;a href=&#34;http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks#Comparison_of_features&#34;&gt;comprehensive list&lt;/a&gt; of web frameworks reveals just how popular MVC is. And for good reason, it is an extremely effective way model user interactions with a website (or mobile app).&lt;/p&gt;
+
+&lt;p&gt;This article isn&amp;rsquo;t about the suitability of MVC as a pattern for web frameworks. Rather I want to look a bit deeper at the features of MVC that make it so useful, and to discuss how these can applied outside of the pattern with the same advantages. MVC predates Rails by at least 11 years. It was conceptualised without any intention of being used for modern web applications.&lt;/p&gt;
+
+&lt;p&gt;MVC is just one example of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;Observer Pattern&lt;/a&gt;. Which in turn is a way of following the &lt;a href=&#34;http://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;separation of concerns&lt;/a&gt; principle that is a corner stone of object orientated programming philosophy. That is the concept that code should be organised in small components, each with a well defined purpose. And that these logical roles are confined within their module. In fact separation of concerns should be a guiding principle of any software development project; it is essential for creating maintainable code.&lt;/p&gt;
+
+&lt;p&gt;The observer pattern is approach for ensuring that your concerns are separated. Of course the different modules of a program need to interact with each other, while each is performing its intended role. The observer pattern accomplishes this communication by having objects, called the subject, maintain a list of dependants that are its observers. When the state changes in the object, it notifies its observes and they can take the appropriate action. No data flows from the observer to the subject. In this way the responsibilities of each object (module, script, whatever) and their relationships to each other are clearly defined.&lt;/p&gt;
+
+&lt;p&gt;MVC is easily explained in that context. A program is made up of components which are either a &amp;ldquo;model&amp;rdquo;, &amp;ldquo;view&amp;rdquo; or &amp;ldquo;controller&amp;rdquo;. A controller observes a model, and view observes the controller. The model is represents the underlying data and the user interacts with the view. Each of these components takes on a different appearance depending on the application.&lt;/p&gt;
+
+&lt;p&gt;In a Rails application the model classes are responsible for wrapping the database; the controllers are responsible for retrieving and decorating the data; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.&lt;/p&gt;
+
+&lt;p&gt;Ember and its cousins are often referred to as frontend MVC frameworks. I don&amp;rsquo;t have any experience with the others, but Ember is not an MVC.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Ember component for secure file upload to S3</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</link>
+      <link>http://localhost:1313/post/2014/09/emberuploads3/</link>
       <pubDate>Thu, 04 Sep 2014 17:42:00 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</guid>
+      <guid>http://localhost:1313/post/2014/09/emberuploads3/</guid>
       <description>
 
 &lt;p&gt;Last time I worked with seriously with Ember was before the addition of components (everything was a view). I&amp;rsquo;m enjoying learning it again in its current, much more mature, state. This article is about a component I created based on the standard HTML file input control. The component retrieves &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html&#34;&gt;temporary credentials for S3&lt;/a&gt; from an API and produces a &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/FormData&#34;&gt;FormData&lt;/a&gt; object ready to post the selected file.&lt;/p&gt;
@@ -151,10 +177,10 @@
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <link>http://localhost:1313/post/2014/08/railsapi/</link>
       <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
+      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;
@@ -209,11 +235,21 @@ $: rake db:setup
     </item>
     
     <item>
-      <title>EveryREST - Let your users own their data</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</link>
+      <title>Writing generic Go code</title>
+      <link>http://localhost:1313/post/2014/08/beerapi/</link>
       <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</guid>
+      <guid>http://localhost:1313/post/2014/08/beerapi/</guid>
+      <description>&lt;p&gt;This article is about the webservice &lt;a href=&#34;https://github.com/baruchlubinsky/beerapi&#34;&gt;beerapi&lt;/a&gt;. That program is best documented by &lt;a href=&#34;http://godoc.org/github.com/baruchlubinsky/beerapi/api&#34;&gt;godoc&lt;/a&gt;, so I&amp;rsquo;m writting here about the lessons in generic Go code that I learnt while developing it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>EveryREST - Let your users own their data</title>
+      <link>http://localhost:1313/post/2014/08/everyrest/</link>
+      <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
+      <author>Baruch Lubinsky</author>
+      <guid>http://localhost:1313/post/2014/08/everyrest/</guid>
       <description>
 
 &lt;h2 id=&#34;toc_0&#34;&gt;Motivation&lt;/h2&gt;
@@ -297,10 +333,10 @@ $: rake db:setup
     
     <item>
       <title>Getting started with Ember and Ember Data using Ember CLI</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</link>
+      <link>http://localhost:1313/post/2014/08/beerdemo/</link>
       <pubDate>Wed, 13 Aug 2014 18:38:22 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</guid>
+      <guid>http://localhost:1313/post/2014/08/beerdemo/</guid>
       <description>
 
 &lt;p&gt;This article describes a minimal &lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember&lt;/a&gt; application. Ember, like &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, is designed with a philosophy of convention over configuration. This demo is designed to demonstrate how little code is required to create a functional data driven website by harnessing &lt;a href=&#34;http://emberjs.com/guides/models/&#34;&gt;Ember Data&lt;/a&gt; and the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/&#34;&gt;REST Adapter&lt;/a&gt;.&lt;/p&gt;
@@ -536,10 +572,10 @@ Router.map(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;functio
     
     <item>
       <title>This website</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</link>
+      <link>http://localhost:1313/post/2014/08/thiswebsite/</link>
       <pubDate>Tue, 12 Aug 2014 10:18:56 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</guid>
+      <guid>http://localhost:1313/post/2014/08/thiswebsite/</guid>
       <description>&lt;p&gt;I built this website using &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;Hugo&lt;/a&gt;. I found it a little tricky to get started, but it is very new software. Now that it is up and running, I&amp;rsquo;m really getting into it.&lt;/p&gt;
 
 &lt;p&gt;The styling use the &lt;a href=&#34;https://github.com/spf13/hyde&#34;&gt;Hyde theme&lt;/a&gt; for Hugo which is based on MDO&amp;rsquo;s &lt;a href=&#34;https://github.com/poole/hyde&#34;&gt;package&lt;/a&gt; of the same name.&lt;/p&gt;

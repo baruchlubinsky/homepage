@@ -3,7 +3,7 @@
   <channel>
       <title>Tutorial on Baruch Lubinsky </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://baruch.lubinsky.co.za/tags/tutorial/index.xml</link>
+    <link>http://localhost:1313/tags/tutorial/index.xml</link>
     <language>en-us</language>
     <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <link>http://localhost:1313/post/2014/08/railsapi/</link>
       <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
+      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;
@@ -69,11 +69,21 @@ $: rake db:setup
     </item>
     
     <item>
+      <title>Writing generic Go code</title>
+      <link>http://localhost:1313/post/2014/08/beerapi/</link>
+      <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
+      <author>Baruch Lubinsky</author>
+      <guid>http://localhost:1313/post/2014/08/beerapi/</guid>
+      <description>&lt;p&gt;This article is about the webservice &lt;a href=&#34;https://github.com/baruchlubinsky/beerapi&#34;&gt;beerapi&lt;/a&gt;. That program is best documented by &lt;a href=&#34;http://godoc.org/github.com/baruchlubinsky/beerapi/api&#34;&gt;godoc&lt;/a&gt;, so I&amp;rsquo;m writting here about the lessons in generic Go code that I learnt while developing it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Getting started with Ember and Ember Data using Ember CLI</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</link>
+      <link>http://localhost:1313/post/2014/08/beerdemo/</link>
       <pubDate>Wed, 13 Aug 2014 18:38:22 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</guid>
+      <guid>http://localhost:1313/post/2014/08/beerdemo/</guid>
       <description>
 
 &lt;p&gt;This article describes a minimal &lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember&lt;/a&gt; application. Ember, like &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, is designed with a philosophy of convention over configuration. This demo is designed to demonstrate how little code is required to create a functional data driven website by harnessing &lt;a href=&#34;http://emberjs.com/guides/models/&#34;&gt;Ember Data&lt;/a&gt; and the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/&#34;&gt;REST Adapter&lt;/a&gt;.&lt;/p&gt;
@@ -309,10 +319,10 @@ Router.map(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;functio
     
     <item>
       <title>This website</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</link>
+      <link>http://localhost:1313/post/2014/08/thiswebsite/</link>
       <pubDate>Tue, 12 Aug 2014 10:18:56 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</guid>
+      <guid>http://localhost:1313/post/2014/08/thiswebsite/</guid>
       <description>&lt;p&gt;I built this website using &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;Hugo&lt;/a&gt;. I found it a little tricky to get started, but it is very new software. Now that it is up and running, I&amp;rsquo;m really getting into it.&lt;/p&gt;
 
 &lt;p&gt;The styling use the &lt;a href=&#34;https://github.com/spf13/hyde&#34;&gt;Hyde theme&lt;/a&gt; for Hugo which is based on MDO&amp;rsquo;s &lt;a href=&#34;https://github.com/poole/hyde&#34;&gt;package&lt;/a&gt; of the same name.&lt;/p&gt;

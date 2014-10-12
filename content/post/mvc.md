@@ -4,7 +4,7 @@ Description = "How to choose and make the best use of a framework."
 Tags = ["development", "rails", "ember"]
 date = 2014-10-11T08:42:59Z
 menu = "main"
-title = "MVC is dead, long live MVC"
+title = "A discussion on design patterns from the perspective of Ember.js and Ruby on Rails."
 Draft = true
 +++
 
@@ -20,5 +20,9 @@ MVC is just one example of the [Observer Pattern](http://en.wikipedia.org/wiki/O
 
 The observer pattern is approach for ensuring that your concerns are separated. Of course the different modules of a program need to interact with each other, while each is performing its intended role. The observer pattern accomplishes this communication by having objects, called the subject, maintain a list of dependants that are its observers. When the state changes in the object, it notifies its observes and they can take the appropriate action. No data flows from the observer to the subject. In this way the responsibilities of each object (module, script, whatever) and their relationships to each other are clearly defined. 
 
-MVC is easily explained in that context. A program is made up of components which are either a "model", "view" or "controller". A controller observes a model, and view observes the controller. The model is represents the underlying data and the user interacts with the view.
+MVC is easily explained in that context. A program is made up of components which are either a "model", "view" or "controller". A controller observes a model, and view observes the controller. The model is represents the underlying data and the user interacts with the view. Each of these components takes on a different appearance depending on the application. 
+
+In a Rails application the model classes are responsible for wrapping the database; the controllers are responsible for retrieving and decorating the data; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.
+
+Ember and its cousins are often referred to as frontend MVC frameworks. I don't have any experience with the others, but Ember is not an MVC. 
 

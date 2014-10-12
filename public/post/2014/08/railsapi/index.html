@@ -12,10 +12,10 @@
    <meta name="description" content="Steps to create a Rails API, using rails-api and Postrgres as a database."> 
 
   
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -128,9 +128,9 @@ $: rake db:setup
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/railsapi\/';
+    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/08\/railsapi\/';
     var disqus_title = 'Rails API backed by Postgres';
-    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/railsapi\/';
+    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/08\/railsapi\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -144,5 +144,8 @@ $: rake db:setup
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  </body>
+  <script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

@@ -12,10 +12,10 @@
    <meta name="description" content="Develop an application demonstarting how easy it is to build data driven applications using Ember.js."> 
 
   
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -355,9 +355,9 @@ Router.map(<span style="color: #007020; font-weight: bold">function</span>() {
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/beerdemo\/';
+    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/08\/beerdemo\/';
     var disqus_title = 'Getting started with Ember and Ember Data using Ember CLI';
-    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/beerdemo\/';
+    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/08\/beerdemo\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -371,5 +371,8 @@ Router.map(<span style="color: #007020; font-weight: bold">function</span>() {
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  </body>
+  <script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

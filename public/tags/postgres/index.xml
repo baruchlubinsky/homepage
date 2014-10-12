@@ -3,7 +3,7 @@
   <channel>
       <title>Postgres on Baruch Lubinsky </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://baruch.lubinsky.co.za/tags/postgres/index.xml</link>
+    <link>http://localhost:1313/tags/postgres/index.xml</link>
     <language>en-us</language>
     <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <link>http://localhost:1313/post/2014/08/railsapi/</link>
       <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
+      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;

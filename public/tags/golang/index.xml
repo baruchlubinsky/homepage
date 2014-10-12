@@ -3,18 +3,28 @@
   <channel>
       <title>Golang on Baruch Lubinsky </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://baruch.lubinsky.co.za/tags/golang/index.xml</link>
+    <link>http://localhost:1313/tags/golang/index.xml</link>
     <language>en-us</language>
     <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
     <updated>Thu, 14 Aug 2014 15:40:00 UTC</updated>
     
     <item>
-      <title>EveryREST - Let your users own their data</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</link>
+      <title>Writing generic Go code</title>
+      <link>http://localhost:1313/post/2014/08/beerapi/</link>
       <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</guid>
+      <guid>http://localhost:1313/post/2014/08/beerapi/</guid>
+      <description>&lt;p&gt;This article is about the webservice &lt;a href=&#34;https://github.com/baruchlubinsky/beerapi&#34;&gt;beerapi&lt;/a&gt;. That program is best documented by &lt;a href=&#34;http://godoc.org/github.com/baruchlubinsky/beerapi/api&#34;&gt;godoc&lt;/a&gt;, so I&amp;rsquo;m writting here about the lessons in generic Go code that I learnt while developing it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>EveryREST - Let your users own their data</title>
+      <link>http://localhost:1313/post/2014/08/everyrest/</link>
+      <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
+      <author>Baruch Lubinsky</author>
+      <guid>http://localhost:1313/post/2014/08/everyrest/</guid>
       <description>
 
 &lt;h2 id=&#34;toc_0&#34;&gt;Motivation&lt;/h2&gt;
@@ -98,10 +108,10 @@
     
     <item>
       <title>This website</title>
-      <link>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</link>
+      <link>http://localhost:1313/post/2014/08/thiswebsite/</link>
       <pubDate>Tue, 12 Aug 2014 10:18:56 UTC</pubDate>
       <author>Baruch Lubinsky</author>
-      <guid>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</guid>
+      <guid>http://localhost:1313/post/2014/08/thiswebsite/</guid>
       <description>&lt;p&gt;I built this website using &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;Hugo&lt;/a&gt;. I found it a little tricky to get started, but it is very new software. Now that it is up and running, I&amp;rsquo;m really getting into it.&lt;/p&gt;
 
 &lt;p&gt;The styling use the &lt;a href=&#34;https://github.com/spf13/hyde&#34;&gt;Hyde theme&lt;/a&gt; for Hugo which is based on MDO&amp;rsquo;s &lt;a href=&#34;https://github.com/poole/hyde&#34;&gt;package&lt;/a&gt; of the same name.&lt;/p&gt;

@@ -12,10 +12,10 @@
    <meta name="description" content="Create a custom file input component that allows files to be uploaded to a private bucket on Amazon Web Services (AWS) Simple Storage Solution (S3)."> 
 
   
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -212,9 +212,9 @@
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/09\/emberuploads3\/';
+    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/09\/emberuploads3\/';
     var disqus_title = 'Ember component for secure file upload to S3';
-    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/09\/emberuploads3\/';
+    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/09\/emberuploads3\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -228,5 +228,8 @@
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  </body>
+  <script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

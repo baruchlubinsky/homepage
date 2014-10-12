@@ -12,10 +12,10 @@
   
 
   
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
-  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -23,7 +23,7 @@
   <link rel="shortcut icon" href="/favicon.ico">
 
   
-  <link href="http://baruch.lubinsky.co.za/index.xml" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
+  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
 </head>
 
 <body class="layout-reverse">
@@ -53,7 +53,15 @@
       <a href="/post">Archive</a>
       
         <summary>
-	<h3><a href="http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/">Ember component for secure file upload to S3</a></h3>
+	<h3><a href="http://localhost:1313/post/2014/10/mvc/">A discussion on design patterns from the perspective of Ember.js and Ruby on Rails.</a></h3>
+	<time>11/10/2014</time>
+	<p>
+		How to choose and make the best use of a framework.
+	</p>
+</summary>
+      
+        <summary>
+	<h3><a href="http://localhost:1313/post/2014/09/emberuploads3/">Ember component for secure file upload to S3</a></h3>
 	<time>4/9/2014</time>
 	<p>
 		Create a custom file input component that allows files to be uploaded to a private bucket on Amazon Web Services (AWS) Simple Storage Solution (S3).
@@ -61,18 +69,10 @@
 </summary>
       
         <summary>
-	<h3><a href="http://baruch.lubinsky.co.za/post/2014/08/railsapi/">Rails API backed by Postgres</a></h3>
+	<h3><a href="http://localhost:1313/post/2014/08/railsapi/">Rails API backed by Postgres</a></h3>
 	<time>20/8/2014</time>
 	<p>
 		Steps to create a Rails API, using rails-api and Postrgres as a database.
-	</p>
-</summary>
-      
-        <summary>
-	<h3><a href="http://baruch.lubinsky.co.za/post/2014/08/everyrest/">EveryREST - Let your users own their data</a></h3>
-	<time>14/8/2014</time>
-	<p>
-		An extremely simple RESTful server that anyone can deploy on Google App Engine.
 	</p>
 </summary>
       
@@ -103,5 +103,8 @@
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
   </div>
-</body>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
