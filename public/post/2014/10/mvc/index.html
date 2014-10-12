@@ -7,9 +7,9 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title> A discussion on design patterns from the perspective of Ember.js and Ruby on Rails. &middot; Baruch Lubinsky </title>
+  <title> MVC is dead, long live MVC &middot; Baruch Lubinsky </title>
 
-   <meta name="description" content="How to choose and make the best use of a framework."> 
+   <meta name="description" content="A discussion on design patterns from the perspective of Ember.js and Ruby on Rails."> 
 
   
   <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
@@ -32,7 +32,7 @@
     <div class="sidebar-about">
        
         <p class="lead">
-          A discussion on design patterns from the perspective of Ember.js and Ruby on Rails.
+          MVC is dead, long live MVC
         </p>
         
           
@@ -49,7 +49,7 @@
 
     <div class="content container">
 		<article class="post">
-			<h1>A discussion on design patterns from the perspective of Ember.js and Ruby on Rails.</h1>
+			<h1>MVC is dead, long live MVC</h1>
   			<time class="post-date">Sat, Oct 11, 2014</time>
       		<p>Modern software development is all about frameworks. The vast majority of projects can be built on top of a vast amount of pre-existing work. Who ever stops to think about the percentage of lines of code in their Rails project that they wrote themselves? These frameworks have made it spectacularly easy to produce very complex applications. Consider an iOS app, written in a weekend by a twelve year old, that goes on to be downloaded a million times. But they have also made us lazy and dependent. Not that a developer should reinvent the wheel, but lazy to learn how the frameworks are designed in order to understand their best usage, and limitations.</p>
 
@@ -65,9 +65,15 @@
 
 <p>MVC is easily explained in that context. A program is made up of components which are either a &ldquo;model&rdquo;, &ldquo;view&rdquo; or &ldquo;controller&rdquo;. A controller observes a model, and view observes the controller. The model is represents the underlying data and the user interacts with the view. Each of these components takes on a different appearance depending on the application.</p>
 
-<p>In a Rails application the model classes are responsible for wrapping the database; the controllers are responsible for retrieving and decorating the data; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.</p>
+<p>In a Rails application the model classes are responsible for wrapping the database; the controllers are observe the data in the model and make it available to the views; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.</p>
 
-<p>Ember and its cousins are often referred to as frontend MVC frameworks. I don&rsquo;t have any experience with the others, but Ember is not an MVC.</p>
+<p>Ember and its cousins are often referred to as frontend MVC frameworks. I don&rsquo;t have any experience with the others, but Ember is not an MVC. Two way binding - which is essential in a data driven web page - absolutely violates the pattern. There are classes called &ldquo;model&rdquo;, &ldquo;view&rdquo; and &ldquo;controller&rdquo;, and their functions are similar to those in Rails, but not the same. The controller decorates the data in the model for use by the view. However changing a value in the view, updates the model. Models observe views, and views observe models (via the controller).</p>
+
+<p>And that&rsquo;s just fine. MVC is a powerful pattern and has proven to be very effective for writing web servers, but its not the right fit for all problems. It is crucial as a developer to understand the frameworks that you are using. To know how they are designed, their intended usage and when it is appropriate to bend or break their rules.</p>
+
+<p>Ember views are not supposed to directly interact with models. But they can, there&rsquo;s nothing stopping you from creating a view that has a model property. I have written an Ember application demonstrating what can be achieved by ignoring the architecture of a framework. <a href="http://baruch.lubinsky.co.za/workflowy/">This</a> is an implementation of <a href="https://workflowy.com">workflowy</a> a hierarchical list keeping application, with source code <a href="https://github.com/baruchlubinsky/ember-workflowy">here</a>. The majority of the code is in <a href="https://github.com/baruchlubinsky/ember-workflowy/blob/master/app/components/list-item.js">this component</a> (components are views in an architectural sense). The component has a property which references a model. By accessing the model directly, the component is able to recursively render itself and all its child nodes. This recursive rendering means that actions on the data are most easily handled within the component that is rendering the model. Such a pattern violates the way the Ember is supposed to be used, but it allowed me to create a very powerful application while writing minimal code.</p>
+
+<p>It is irresponsible as a developer to try to do everything from scratch. There is an unprecedented wealth of open source code covering most application domains. To be an effective developer one must leverage the work of others. However it is too easy to just take their code for granted. One must understand how the framework is supposed to work and when it is appropriate to contravene that. If your code is frustrating you, ask yourself: &ldquo;am I writing this because of my application&rsquo;s logic, or in order to fit in with the framework?&rdquo; Conventions are great they can greatly simplify development, but there are no holy cows, the intended purpose of the application must always be foremost in its development.</p>
 
 		</article>
 		<hr>
@@ -87,7 +93,7 @@
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
     var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/10\/mvc\/';
-    var disqus_title = 'A discussion on design patterns from the perspective of Ember.js and Ruby on Rails.';
+    var disqus_title = 'MVC is dead, long live MVC';
     var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/10\/mvc\/';
 
     (function() {

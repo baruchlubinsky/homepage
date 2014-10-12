@@ -1,10 +1,10 @@
 +++
 Categories = ["Development", "Opinion"]
-Description = "How to choose and make the best use of a framework."
+Description = "A discussion on design patterns from the perspective of Ember.js and Ruby on Rails."
 Tags = ["development", "rails", "ember"]
 date = 2014-10-11T08:42:59Z
 menu = "main"
-title = "A discussion on design patterns from the perspective of Ember.js and Ruby on Rails."
+title = "MVC is dead, long live MVC"
 Draft = true
 +++
 
@@ -22,7 +22,13 @@ The observer pattern is approach for ensuring that your concerns are separated. 
 
 MVC is easily explained in that context. A program is made up of components which are either a "model", "view" or "controller". A controller observes a model, and view observes the controller. The model is represents the underlying data and the user interacts with the view. Each of these components takes on a different appearance depending on the application. 
 
-In a Rails application the model classes are responsible for wrapping the database; the controllers are responsible for retrieving and decorating the data; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.
+In a Rails application the model classes are responsible for wrapping the database; the controllers are observe the data in the model and make it available to the views; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.
 
-Ember and its cousins are often referred to as frontend MVC frameworks. I don't have any experience with the others, but Ember is not an MVC. 
+Ember and its cousins are often referred to as frontend MVC frameworks. I don't have any experience with the others, but Ember is not an MVC. Two way binding - which is essential in a data driven web page - absolutely violates the pattern. There are classes called "model", "view" and "controller", and their functions are similar to those in Rails, but not the same. The controller decorates the data in the model for use by the view. However changing a value in the view, updates the model. Models observe views, and views observe models (via the controller). 
+
+And that's just fine. MVC is a powerful pattern and has proven to be very effective for writing web servers, but its not the right fit for all problems. It is crucial as a developer to understand the frameworks that you are using. To know how they are designed, their intended usage and when it is appropriate to bend or break their rules. 
+
+Ember views are not supposed to directly interact with models. But they can, there's nothing stopping you from creating a view that has a model property. I have written an Ember application demonstrating what can be achieved by ignoring the architecture of a framework. [This](http://baruch.lubinsky.co.za/workflowy/) is an implementation of [workflowy](https://workflowy.com) a hierarchical list keeping application, with source code [here](https://github.com/baruchlubinsky/ember-workflowy). The majority of the code is in [this component](https://github.com/baruchlubinsky/ember-workflowy/blob/master/app/components/list-item.js) (components are views in an architectural sense). The component has a property which references a model. By accessing the model directly, the component is able to recursively render itself and all its child nodes. This recursive rendering means that actions on the data are most easily handled within the component that is rendering the model. Such a pattern violates the way the Ember is supposed to be used, but it allowed me to create a very powerful application while writing minimal code. 
+
+It is irresponsible as a developer to try to do everything from scratch. There is an unprecedented wealth of open source code covering most application domains. To be an effective developer one must leverage the work of others. However it is too easy to just take their code for granted. One must understand how the framework is supposed to work and when it is appropriate to contravene that. If your code is frustrating you, ask yourself: "am I writing this because of my application's logic, or in order to fit in with the framework?" Conventions are great they can greatly simplify development, but there are no holy cows, the intended purpose of the application must always be foremost in its development.
 
