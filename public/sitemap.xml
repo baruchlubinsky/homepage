@@ -2,43 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2014-10-11T08:42:59+00:00</lastmod>
+    <loc>http://baruch.lubinsky.co.za/</loc>
+    <lastmod>2014-09-04T17:42:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/2014/10/mvc/</loc>
-    <lastmod>2014-10-11T08:42:59+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/2014/09/emberuploads3/</loc>
+    <loc>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</loc>
     <lastmod>2014-09-04T17:42:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/2014/08/railsapi/</loc>
+    <loc>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</loc>
     <lastmod>2014-08-20T12:27:12+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/2014/08/beerapi/</loc>
+    <loc>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</loc>
     <lastmod>2014-08-14T15:40:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/2014/08/everyrest/</loc>
-    <lastmod>2014-08-14T15:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/2014/08/beerdemo/</loc>
+    <loc>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</loc>
     <lastmod>2014-08-13T18:38:22+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/2014/08/thiswebsite/</loc>
+    <loc>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</loc>
     <lastmod>2014-08-12T10:18:56+00:00</lastmod>
   </url>
   

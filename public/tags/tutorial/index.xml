@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Tutorial on Baruch Lubinsky </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/tags/tutorial/index.xml</link>
+    <title>Tutorial on Baruch Lubinsky</title>
+    <link>http://baruch.lubinsky.co.za/tags/tutorial/</link>
+    <description>Recent content in Tutorial on Baruch Lubinsky</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
-    <updated>Wed, 20 Aug 2014 12:27:12 UTC</updated>
+    <lastBuildDate>Wed, 20 Aug 2014 12:27:12 +0000</lastBuildDate>
+    <atom:link href="http://baruch.lubinsky.co.za/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://localhost:1313/post/2014/08/railsapi/</link>
-      <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <pubDate>Wed, 20 Aug 2014 12:27:12 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;
 
 &lt;p&gt;Here are the step for setting up a &lt;a href=&#34;https://github.com/rails-api/rails-api&#34;&gt;Rails-API&lt;/a&gt; project with a &lt;a href=&#34;http://www.postgresql.org/&#34;&gt;PostgreSQL&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_0&#34;&gt;Development&lt;/h1&gt;
+&lt;h1 id=&#34;development:f382bef6e797ce52b1c162f561612a7b&#34;&gt;Development&lt;/h1&gt;
 
 &lt;p&gt;Install PostgreSQL using &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; and create a user for your application.&lt;/p&gt;
 
@@ -51,7 +52,7 @@ $: rake db:migrate
 $: rake db:setup 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;toc_1&#34;&gt;Production&lt;/h1&gt;
+&lt;h1 id=&#34;production:f382bef6e797ce52b1c162f561612a7b&#34;&gt;Production&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://aws.amazon.com/&#34;&gt;Amazon Web Services&lt;/a&gt; makes it very easy to host Rails applications using &lt;a href=&#34;http://aws.amazon.com/opsworks/&#34;&gt;OpsWorks&lt;/a&gt; and &lt;a href=&#34;http://aws.amazon.com/rds/&#34;&gt;RDS&lt;/a&gt;.&lt;/p&gt;
 
@@ -69,38 +70,28 @@ $: rake db:setup
     </item>
     
     <item>
-      <title>Writing generic Go code</title>
-      <link>http://localhost:1313/post/2014/08/beerapi/</link>
-      <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/beerapi/</guid>
-      <description>&lt;p&gt;This article is about the webservice &lt;a href=&#34;https://github.com/baruchlubinsky/beerapi&#34;&gt;beerapi&lt;/a&gt;. That program is best documented by &lt;a href=&#34;http://godoc.org/github.com/baruchlubinsky/beerapi/api&#34;&gt;godoc&lt;/a&gt;, so I&amp;rsquo;m writting here about the lessons in generic Go code that I learnt while developing it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Getting started with Ember and Ember Data using Ember CLI</title>
-      <link>http://localhost:1313/post/2014/08/beerdemo/</link>
-      <pubDate>Wed, 13 Aug 2014 18:38:22 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/beerdemo/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</link>
+      <pubDate>Wed, 13 Aug 2014 18:38:22 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</guid>
       <description>
 
 &lt;p&gt;This article describes a minimal &lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember&lt;/a&gt; application. Ember, like &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, is designed with a philosophy of convention over configuration. This demo is designed to demonstrate how little code is required to create a functional data driven website by harnessing &lt;a href=&#34;http://emberjs.com/guides/models/&#34;&gt;Ember Data&lt;/a&gt; and the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/&#34;&gt;REST Adapter&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Getting started&lt;/h2&gt;
+&lt;h1 id=&#34;getting-started:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Getting started&lt;/h1&gt;
 
 &lt;p&gt;I use &lt;a href=&#34;http://www.ember-cli.com/&#34;&gt;Ember CLI&lt;/a&gt; to build my site. Ember CLI uses ES6 Modules to organise code. This leads to well structured, logically layed out code (unlike traditional Javascript). For a backend I wrote a &lt;a href=&#34;http://appengine.google.com/&#34;&gt;Google App Engine&lt;/a&gt; program, it does not contain any business logic. All the data processing is handled by the Ember App.&lt;/p&gt;
 
 &lt;p&gt;The application keeps track of a list of beers, and comments about each beer. All the CRUD functions are implemented, and the data contains a &amp;ldquo;has-many&amp;rdquo; relationship. The rest of this article explains the files I added to the scaffolding from Ember CLI. &lt;a href=&#34;https://github.com/baruchlubinsky/beerdemo/tree/e6a7984c9692a62198ee06ba1961a819ed990c97&#34;&gt;Clone the repo.&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Models&lt;/h2&gt;
+&lt;h1 id=&#34;models:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Models&lt;/h1&gt;
 
 &lt;p&gt;The data model is very simple, two model and one relationship. See the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/#toc_relationships&#34;&gt;docs&lt;/a&gt; explaining how &lt;code&gt;async&lt;/code&gt; affects the JSON.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_2&#34;&gt;&lt;code&gt;app/models/beer.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-models-beer-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/models/beer.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.Model.extend({
   name&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.attr(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;),
@@ -108,10 +99,11 @@ $: rake db:setup
   comments&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.hasMany(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;, {async&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;}),
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_3&#34;&gt;&lt;code&gt;app/models/comment.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-models-comment-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/models/comment.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.Model.extend({
   user&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.attr(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;),
@@ -119,210 +111,219 @@ $: rake db:setup
   beer&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.belongsTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;),
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_4&#34;&gt;Router&lt;/h2&gt;
+&lt;h1 id=&#34;router:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Router&lt;/h1&gt;
 
 &lt;p&gt;Comments are added at &lt;code&gt;beers.show&lt;/code&gt; and records are deleted from &lt;code&gt;beers.edit&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_5&#34;&gt;&lt;code&gt;app/router.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-router-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/router.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; Router &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; Ember.Router.extend({
   location&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DemoENV.locationType
 });
 
 Router.map(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.resource(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;new&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;show&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id&amp;#39;&lt;/span&gt;});
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;edit&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id/edit&amp;#39;&lt;/span&gt;});
-    });
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.resource(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;new&amp;#39;&lt;/span&gt;);
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;show&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id&amp;#39;&lt;/span&gt;});
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;edit&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id/edit&amp;#39;&lt;/span&gt;});
+  	});
 });
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Router;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_6&#34;&gt;Routes&lt;/h2&gt;
+&lt;h1 id=&#34;routes:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Routes&lt;/h1&gt;
 
 &lt;p&gt;&lt;code&gt;/beers&lt;/code&gt; shows a list of all the beer records.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_7&#34;&gt;&lt;code&gt;app/routes/beers/index.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-index-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/index.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/beers/new&lt;/code&gt; provides allows a new record to be created.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_8&#34;&gt;&lt;code&gt;app/routes/beers/new.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-new-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/new.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        create&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
-                });
-        }
-    }
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
+	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		create&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
+				});
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/beers/:id/edit&lt;/code&gt; updates a record. The &lt;code&gt;:id&lt;/code&gt; from the URL is available to the model hook as &lt;code&gt;params.id&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_9&#34;&gt;&lt;code&gt;app/routes/beers/edit.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-edit-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/edit.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);},
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        save&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
-                });
-        },
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;delete&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; model &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;); 
-            model.destroyRecord().then(
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
-                }, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; (error) {
-                    Ember.Logger.debug(error);
-                });
-        }
-    }
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);},
+	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		save&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
+				});
+		},
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;delete&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; model &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;); 
+			model.destroyRecord().then(
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
+				}, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; (error) {
+					Ember.Logger.debug(error);
+				});
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/beers/:id&lt;/code&gt; displays an individual beer record and adds comments to it.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_10&#34;&gt;&lt;code&gt;app/routes/beers/show.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-show-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/show.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);
-    },
-    setupController&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(controller, model) {
-        controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;, model);
-        controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
-    },
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        comment&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; comment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;);
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; beer &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;);
-            beer.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comments&amp;#39;&lt;/span&gt;).addObject(comment);
-            comment.save().then( &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// comment first to get an ID&lt;/span&gt;
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    beer.save().then(
-                        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                            self.controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, self.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
-                        }
-                    );
-                }
-            );
-        },
-        willTransition&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;).destroyRecord();
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
-        }
-    }
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);
+	},
+	setupController&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(controller, model) {
+    	controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;, model);
+    	controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
+  	},
+  	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		comment&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; comment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;);
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; beer &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;);
+			beer.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comments&amp;#39;&lt;/span&gt;).addObject(comment);
+			comment.save().then( &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// comment first to get an ID&lt;/span&gt;
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					beer.save().then(
+						&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+							self.controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, self.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
+						}
+					);
+				}
+			);
+		},
+		willTransition&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;).destroyRecord();
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;willTransition&lt;/code&gt; handler is necessary to clean up when the route is changed by the back button.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_11&#34;&gt;Controllers and Views&lt;/h2&gt;
+&lt;h1 id=&#34;controllers-and-views:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Controllers and Views&lt;/h1&gt;
 
 &lt;p&gt;This application works with the default controllers and views.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_12&#34;&gt;Adapter&lt;/h2&gt;
+&lt;h1 id=&#34;adapter:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Adapter&lt;/h1&gt;
 
 &lt;p&gt;Connect Ember Data to the webservice. You&amp;rsquo;re welcome to try out my instance, but if you want to use it more heavily please &lt;a href=&#34;https://github.com/baruchlubinsky/everyrest&#34;&gt;create your own on the App Engine&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_13&#34;&gt;&lt;code&gt;app/adapters/application.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-adapters-application-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/adapters/application.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.RESTAdapter.extend({
-    host&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://everyrest.appspot.com&amp;quot;&lt;/span&gt;,
-    ajax&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(url, method, hash) {
-        hash &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; hash &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; {}; &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// hash may be undefined&lt;/span&gt;
-        hash.crossDomain &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
-        hash.xhrFields &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; {withCredentials&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;};
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(url, method, hash);        
-    }
+	host&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://everyrest.appspot.com&amp;quot;&lt;/span&gt;,
+	ajax&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(url, method, hash) {
+ 		hash &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; hash &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; {}; &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// hash may be undefined&lt;/span&gt;
+ 		hash.crossDomain &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+ 		hash.xhrFields &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; {withCredentials&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;};
+ 		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(url, method, hash);		
+ 	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_14&#34;&gt;Serializer&lt;/h2&gt;
+&lt;h1 id=&#34;serializer:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Serializer&lt;/h1&gt;
 
 &lt;p&gt;See the &lt;a href=&#34;// http://emberjs.com/api/data/classes/DS.RESTSerializer.html#method_serializeHasMany&#34;&gt;docs&lt;/a&gt; to see how this causes a model to write an array of its &amp;ldquo;has-many&amp;rdquo; ID&amp;rsquo;s to the server. This is not the defualt since most servers take responsibility for tracking relationships in the data.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_15&#34;&gt;&lt;code&gt;app/serializers/application.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-serializers-application-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/serializers/application.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.RESTSerializer.extend({
-    serialize&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(record, options) {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; json &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(record, options);
-        record.eachRelationship(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(name, relationship) {
-          &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (relationship.kind &lt;span style=&#34;color: #666666&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;hasMany&amp;#39;&lt;/span&gt;) {
-            json[name] &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; record.get(name).mapBy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;);
-          }
-        });
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; json;
-      }
+	serialize&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(record, options) {
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; json &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(record, options);
+	    record.eachRelationship(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(name, relationship) {
+	      &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (relationship.kind &lt;span style=&#34;color: #666666&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;hasMany&amp;#39;&lt;/span&gt;) {
+	        json[name] &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; record.get(name).mapBy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;);
+	      }
+	    });
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; json;
+	  }
 });) 
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_16&#34;&gt;Templates&lt;/h2&gt;
+&lt;h1 id=&#34;templates:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Templates&lt;/h1&gt;
 
 &lt;p&gt;There is nothing special about the &lt;a href=&#34;http://emberjs.com/guides/templates/handlebars-basics/&#34;&gt;templates&lt;/a&gt; I have used in this app. Here is the template for &lt;code&gt;show&lt;/code&gt; as an example.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_17&#34;&gt;&lt;code&gt;app/templates/beers/show.hbs&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-templates-beers-show-hbs:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/templates/beers/show.hbs&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;{{name}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;{{type}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;Comments&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h4&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;each&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;model.comments&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;
+{{#each model.comments}}
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
-    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;message&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;em&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;user&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/em&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;{{message}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;em&amp;gt;&lt;/span&gt;{{user}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/em&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;each&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;
+{{/each}}
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;Post&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h4&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Name:&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/br&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;newComment.user&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+{{input value=newComment.user}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Comment:&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/br&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;textarea&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;newComment.message&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;cols&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;40&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;rows&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Comment&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+{{textarea value=newComment.message cols=&amp;quot;40&amp;quot; rows=&amp;quot;4&amp;quot;}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;comment&lt;/span&gt;&lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Comment&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>This website</title>
-      <link>http://localhost:1313/post/2014/08/thiswebsite/</link>
-      <pubDate>Tue, 12 Aug 2014 10:18:56 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/thiswebsite/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</link>
+      <pubDate>Tue, 12 Aug 2014 10:18:56 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/thiswebsite/</guid>
       <description>&lt;p&gt;I built this website using &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;Hugo&lt;/a&gt;. I found it a little tricky to get started, but it is very new software. Now that it is up and running, I&amp;rsquo;m really getting into it.&lt;/p&gt;
 
 &lt;p&gt;The styling use the &lt;a href=&#34;https://github.com/spf13/hyde&#34;&gt;Hyde theme&lt;/a&gt; for Hugo which is based on MDO&amp;rsquo;s &lt;a href=&#34;https://github.com/poole/hyde&#34;&gt;package&lt;/a&gt; of the same name.&lt;/p&gt;
@@ -330,8 +331,9 @@ Router.map(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;functio
 &lt;p&gt;View the source &lt;a href=&#34;https://github.com/baruchlubinsky/homepage&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The website is hosted on S3. Uploading is simple with &lt;a href=&#34;http://s3tools.org&#34;&gt;S3cmd&lt;/a&gt;:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;s3cmd sync -P &amp;ndash;exclude&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;DS_Store&amp;quot;&lt;/span&gt; public/ s3://baruch.lubinsky.co.za
-&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;s3cmd sync -P --exclude&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;DS_Store&amp;quot;&lt;/span&gt; public/ s3://baruch.lubinsky.co.za
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     

@@ -1,149 +1,155 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Aws on Baruch Lubinsky </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/tags/aws/index.xml</link>
+    <title>Aws on Baruch Lubinsky</title>
+    <link>http://baruch.lubinsky.co.za/tags/aws/</link>
+    <description>Recent content in Aws on Baruch Lubinsky</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
-    <updated>Thu, 04 Sep 2014 17:42:00 UTC</updated>
+    <lastBuildDate>Thu, 04 Sep 2014 17:42:00 +0000</lastBuildDate>
+    <atom:link href="http://baruch.lubinsky.co.za/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Ember component for secure file upload to S3</title>
-      <link>http://localhost:1313/post/2014/09/emberuploads3/</link>
-      <pubDate>Thu, 04 Sep 2014 17:42:00 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/09/emberuploads3/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</link>
+      <pubDate>Thu, 04 Sep 2014 17:42:00 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</guid>
       <description>
 
 &lt;p&gt;Last time I worked with seriously with Ember was before the addition of components (everything was a view). I&amp;rsquo;m enjoying learning it again in its current, much more mature, state. This article is about a component I created based on the standard HTML file input control. The component retrieves &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html&#34;&gt;temporary credentials for S3&lt;/a&gt; from an API and produces a &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/FormData&#34;&gt;FormData&lt;/a&gt; object ready to post the selected file.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Multi-tenant File Storage&lt;/h2&gt;
+&lt;h1 id=&#34;multi-tenant-file-storage:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;Multi-tenant File Storage&lt;/h1&gt;
 
 &lt;p&gt;This project is born out of a need to host sensitive user data on &lt;a href=&#34;http://aws.amazon.com/&#34;&gt;AWS&lt;/a&gt; using &lt;a href=&#34;http://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt;. Each user must be certain that their data is protected not only from public access but also from other users of the system. S3 provides functionality to restrict access to the files it hosts. The approach I have taken does not grant anyone access to the bucket. All requests must be temporarily granted permission. For uploading this is achieved using a &amp;ldquo;Presigned Post&amp;rdquo;.&lt;/p&gt;
 
 &lt;p&gt;The bucket does not grant access to any user. Rather I create a &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html&#34;&gt;IAM role&lt;/a&gt; that has rights to upload to the bucket. Then let the webserver running the backend API assume that role. The bucket must also allow &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html&#34;&gt;CORS&lt;/a&gt; requests.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Backend API&lt;/h2&gt;
+&lt;h1 id=&#34;backend-api:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;Backend API&lt;/h1&gt;
 
 &lt;p&gt;The backend I am using here is a &lt;a href=&#34;https://github.com/rails-api/rails-api&#34;&gt;Rails-API&lt;/a&gt; application. Of course any sort of backend will do, Rails is nice here because there is an official &lt;a href=&#34;http://docs.aws.amazon.com/AWSRubySDK/latest/frames.html&#34;&gt;AWS SDK for Ruby&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The backend must provide the signed data for the POST. In reality it should also authenticate users before doing so. The following code can be used to create the fields that are required:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020&#34;&gt;require&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;date&amp;#39;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020&#34;&gt;require&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;date&amp;#39;&lt;/span&gt;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;FilestoreController&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;ApplicationController&lt;/span&gt;
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;upload&lt;/span&gt;
-        s3 &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #517918&#34;&gt;AWS&lt;/span&gt;:&lt;span style=&#34;color: #517918&#34;&gt;:S3&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;new
-        bucket &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; s3&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;buckets&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;Rails&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;configuration&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;filestore&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:upload&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;exists? 
-            render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;error&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Upload bucket &lt;/span&gt;&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;#{&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;name&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt; does not exist.&amp;quot;&lt;/span&gt;}, &lt;span style=&#34;color: #517918&#34;&gt;status&lt;/span&gt;: &lt;span style=&#34;color: #40a070&#34;&gt;404&lt;/span&gt;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt;
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
-        access_key_id &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;AWS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;config&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;credentials&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:access_key_id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
-        policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;presigned_post({&lt;span style=&#34;color: #517918&#34;&gt;expires&lt;/span&gt;: &lt;span style=&#34;color: #60add5&#34;&gt;Time&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;now&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;utc &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;})
-        form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;fields
-        render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;form&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;url&lt;/span&gt;: policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;url&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;to_s, &lt;span style=&#34;color: #517918&#34;&gt;fields&lt;/span&gt;: {
-                &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;signature&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
-                &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
-                &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;access_key_id&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; access_key_id,
-            }}}
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;upload&lt;/span&gt;
+		s3 &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;AWS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;S3&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;new
+		bucket &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; s3&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;buckets&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;Rails&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;configuration&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;filestore&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:upload&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;exists? 
+			render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;error&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Upload bucket &lt;/span&gt;&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;#{&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;name&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt; does not exist.&amp;quot;&lt;/span&gt;}, &lt;span style=&#34;color: #517918&#34;&gt;status&lt;/span&gt;: &lt;span style=&#34;color: #40a070&#34;&gt;404&lt;/span&gt;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt;
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
+		access_key_id &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;AWS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;config&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;credentials&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:access_key_id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
+		policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;presigned_post({&lt;span style=&#34;color: #517918&#34;&gt;expires&lt;/span&gt;: &lt;span style=&#34;color: #60add5&#34;&gt;Time&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;now&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;utc &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;})
+		form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;fields
+		render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;form&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;url&lt;/span&gt;: policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;url&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;to_s, &lt;span style=&#34;color: #517918&#34;&gt;fields&lt;/span&gt;: {
+				&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;signature&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
+				&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
+				&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;access_key_id&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; access_key_id,
+			}}}
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;This code uses the SDK to calculate the policy and signature fields as required. (The documentation about this is very confusing but it seems that this is enough.) For added security, the policy can made more specific.&lt;/p&gt;
 
 &lt;p&gt;I like to host my Ember application separately from the backend. In that case you must have your Rails application set up for CORS. A nice simple way to do this is in the application controller.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ApplicationController&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #517918&#34;&gt;ActionController&lt;/span&gt;:&lt;span style=&#34;color: #517918&#34;&gt;:API&lt;/span&gt;
-    before_filter &lt;span style=&#34;color: #517918&#34;&gt;:cors&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ApplicationController&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;ActionController&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;API&lt;/span&gt;
+	before_filter &lt;span style=&#34;color: #517918&#34;&gt;:cors&lt;/span&gt;
 
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;cors&lt;/span&gt;
-        response&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;headers&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;merge! &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Methods&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST, PUT, GET, DELETE&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Headers&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Origin, Accept, Content-Type&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;cors&lt;/span&gt;
+    	response&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;headers&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;merge! &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Methods&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST, PUT, GET, DELETE&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Headers&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Origin, Accept, Content-Type&amp;#39;&lt;/span&gt;
+  	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;File chooser&lt;/h2&gt;
+&lt;h1 id=&#34;file-chooser:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;File chooser&lt;/h1&gt;
 
 &lt;p&gt;I wanted to create a component that could be used a &amp;ldquo;drop in replacement&amp;rdquo; for &lt;code&gt;&amp;lt;input type=&amp;quot;file&amp;quot;&amp;gt;&lt;/code&gt;. So that it could be used withing existing javascript solutions for file uploads. This solution doesn&amp;rsquo;t realise that perfectly, but I like the way that it uses an existing HTML element.&lt;/p&gt;
 
 &lt;p&gt;The component is defined (in an &lt;a href=&#34;http://www.ember-cli.com/&#34;&gt;Ember-CLI&lt;/a&gt; project) in &lt;code&gt;app/components/s3-upload.js&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Component.extend({
-    tagName&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;input&amp;#39;&lt;/span&gt;,
-    type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;file&amp;#39;&lt;/span&gt;,
-    attributeBindings&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;type&amp;#39;&lt;/span&gt;],
-    folder&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
-    didInsertElement&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-        self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;);
-        self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Authenticating...&amp;#39;&lt;/span&gt;);
-        Ember.$.ajax(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;http://url.for.backend/upload_form&amp;#39;&lt;/span&gt;).then(
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
-                self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;);
-                self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Select a file to upload.&amp;#39;&lt;/span&gt;);
-                self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;, response.form);
-            },
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Unable to connect with S3.&amp;#39;&lt;/span&gt;);
-            }
-        );
-    },
-    change&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; FormData();
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; input &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;element&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;folder&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; key &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; input.value.split(&lt;span style=&#34;color: #235388&#34;&gt;/(\\|\/)/g&lt;/span&gt;).pop();
-        
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;, key);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt;, policy.fields.signature);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;AWSAccessKeyId&amp;quot;&lt;/span&gt;, policy.fields.access_key_id);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt;, policy.fields.policy);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;file&amp;quot;&lt;/span&gt;, input.files[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;]);
-        
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ajaxOptions&amp;#39;&lt;/span&gt;, {
-            url&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; policy.url,
-            data&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; form,
-            contentType&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
-            type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;,
-            processData&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
-            }
-        );
-    }
+	tagName&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;input&amp;#39;&lt;/span&gt;,
+	type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;file&amp;#39;&lt;/span&gt;,
+	attributeBindings&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;type&amp;#39;&lt;/span&gt;],
+	folder&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
+	didInsertElement&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+		self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;);
+		self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Authenticating...&amp;#39;&lt;/span&gt;);
+		Ember.$.ajax(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;http://url.for.backend/upload_form&amp;#39;&lt;/span&gt;).then(
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
+				self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;);
+				self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Select a file to upload.&amp;#39;&lt;/span&gt;);
+				self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;, response.form);
+			},
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Unable to connect with S3.&amp;#39;&lt;/span&gt;);
+			}
+		);
+	},
+	change&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;);
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; FormData();
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; input &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;element&amp;#39;&lt;/span&gt;);
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;folder&amp;#39;&lt;/span&gt;);
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; key &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; input.value.split(&lt;span style=&#34;color: #235388&#34;&gt;/(\\|\/)/g&lt;/span&gt;).pop();
+		
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;, key);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt;, policy.fields.signature);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;AWSAccessKeyId&amp;quot;&lt;/span&gt;, policy.fields.access_key_id);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt;, policy.fields.policy);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;file&amp;quot;&lt;/span&gt;, input.files[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;]);
+		
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ajaxOptions&amp;#39;&lt;/span&gt;, {
+			url&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; policy.url,
+			data&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; form,
+			contentType&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
+			type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;,
+			processData&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
+			}
+		);
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;No template is required. The component reveals an &lt;code&gt;ajaxOptions&lt;/code&gt; property that contains all the data required to upload the file. Similar to the original element, the upload must be executed externally.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;didInsertElement&lt;/code&gt; event sends a request to the backend to retrieve the presigned fields that are saved in the components &amp;lsquo;policy&amp;rsquo; property. Then when a file is selected a &lt;code&gt;FormData&lt;/code&gt; object is created. S3 expects the uploaded file to be in the &lt;code&gt;file&lt;/code&gt; field. The form is added to a hash of AJAx options ready to be posted. &lt;code&gt;processData&lt;/code&gt; must be false to prevent jQuery from attempting to parse the file.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;Usage&lt;/h2&gt;
+&lt;h1 id=&#34;usage:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;Usage&lt;/h1&gt;
 
 &lt;p&gt;The file selector is designed to be usable in various ways. The most simple one I came up with wraps it in another component including an upload button. The template for that component is:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;s3-upload&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;ajaxOptions&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;formToPost&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;folder&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;folder&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;
-&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;doUpload&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;bind-attr&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Upload&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{{s3-upload ajaxOptions=formToPost disabled=disabled folder=folder}}
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;doUpload&lt;/span&gt;&lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;}}&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;bind-attr&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;disabled=disabled}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Upload&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;This binds the disabled properties to eachother so that the upload button is disabled while the file input is disabled. The ajax options containing the file data are bound to &lt;code&gt;formToPost&lt;/code&gt;. The code for this wrapper is:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Component.extend({
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        doUpload&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; opts &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;formToPost&amp;#39;&lt;/span&gt;);
-            Ember.$.ajax(opts);
-        }
-    }
+	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		doUpload&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; opts &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;formToPost&amp;#39;&lt;/span&gt;);
+			Ember.$.ajax(opts);
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;The hash prepared in the &lt;code&gt;s3-upload&lt;/code&gt; is ready to be used by &lt;code&gt;$.ajax&lt;/code&gt;. This is a minimal implementation of that component. It is designed to be usable within a more complicated user interface - there are already many good javascript solutions out there. Of course the results of the ajax call should be handled.&lt;/p&gt;
 </description>
@@ -151,17 +157,17 @@
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://localhost:1313/post/2014/08/railsapi/</link>
-      <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <pubDate>Wed, 20 Aug 2014 12:27:12 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;
 
 &lt;p&gt;Here are the step for setting up a &lt;a href=&#34;https://github.com/rails-api/rails-api&#34;&gt;Rails-API&lt;/a&gt; project with a &lt;a href=&#34;http://www.postgresql.org/&#34;&gt;PostgreSQL&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_0&#34;&gt;Development&lt;/h1&gt;
+&lt;h1 id=&#34;development:f382bef6e797ce52b1c162f561612a7b&#34;&gt;Development&lt;/h1&gt;
 
 &lt;p&gt;Install PostgreSQL using &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; and create a user for your application.&lt;/p&gt;
 
@@ -191,7 +197,7 @@ $: rake db:migrate
 $: rake db:setup 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;toc_1&#34;&gt;Production&lt;/h1&gt;
+&lt;h1 id=&#34;production:f382bef6e797ce52b1c162f561612a7b&#34;&gt;Production&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://aws.amazon.com/&#34;&gt;Amazon Web Services&lt;/a&gt; makes it very easy to host Rails applications using &lt;a href=&#34;http://aws.amazon.com/opsworks/&#34;&gt;OpsWorks&lt;/a&gt; and &lt;a href=&#34;http://aws.amazon.com/rds/&#34;&gt;RDS&lt;/a&gt;.&lt;/p&gt;
 

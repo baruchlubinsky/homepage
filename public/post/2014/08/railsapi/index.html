@@ -9,14 +9,11 @@
 
   <title> Rails API backed by Postgres &middot; Baruch Lubinsky </title>
 
-   <meta name="description" content="Steps to create a Rails API, using rails-api and Postrgres as a database."> 
-
   
-  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
@@ -26,31 +23,25 @@
   <link href="" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
 </head>
 
+<link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
 <body class="layout-reverse">
-<nav class="sidebar">
+<div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-       
-        <p class="lead">
-          Rails API backed by Postgres
-        </p>
-        
-          <nav id="TableOfContents">
+      <h1><a href="/">Baruch Lubinsky</a></h1>
+      
+      <h3><a href="#">Rails API backed by Postgres</a></h3> 
+      <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Development</a></li>
-<li><a href="#toc_1">Production</a></li>
+<li><a href="#development:f382bef6e797ce52b1c162f561612a7b">Development</a></li>
+<li><a href="#production:f382bef6e797ce52b1c162f561612a7b">Production</a></li>
 </ul>
-</nav>
-        
+</nav> 
       
     </div>
-
-    <ul class="sidebar-nav">
-      <li><a href="/">Home</a> </li>
-      <li><a href="/post">Blog</a> </li>
-    </ul>
+    <p>&copy; 2015. All rights reserved. </p>
   </div>
-</nav>
+</div>
 
     <div class="content container">
 		<article class="post">
@@ -62,7 +53,7 @@
 
 <p>Here are the step for setting up a <a href="https://github.com/rails-api/rails-api">Rails-API</a> project with a <a href="http://www.postgresql.org/">PostgreSQL</a>.</p>
 
-<h1 id="toc_0">Development</h1>
+<h1 id="development:f382bef6e797ce52b1c162f561612a7b">Development</h1>
 
 <p>Install PostgreSQL using <a href="http://brew.sh/">Homebrew</a> and create a user for your application.</p>
 
@@ -92,7 +83,7 @@ $: rake db:migrate
 $: rake db:setup 
 </code></pre>
 
-<h1 id="toc_1">Production</h1>
+<h1 id="production:f382bef6e797ce52b1c162f561612a7b">Production</h1>
 
 <p><a href="http://aws.amazon.com/">Amazon Web Services</a> makes it very easy to host Rails applications using <a href="http://aws.amazon.com/opsworks/">OpsWorks</a> and <a href="http://aws.amazon.com/rds/">RDS</a>.</p>
 
@@ -128,9 +119,9 @@ $: rake db:setup
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/08\/railsapi\/';
+    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/railsapi\/';
     var disqus_title = 'Rails API backed by Postgres';
-    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/08\/railsapi\/';
+    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/railsapi\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -144,8 +135,5 @@ $: rake db:setup
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  <script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+  </body>
 </html>

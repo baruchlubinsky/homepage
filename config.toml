@@ -1,4 +1,4 @@
-BaseUrl = "http://baruch.lubinsky.co.za"
+BaseURL = "http://baruch.lubinsky.co.za"
 languageCode = "en-us"
 title = "Baruch Lubinsky"
 theme = "hyde"
@@ -17,7 +17,7 @@ disqusShortname = "blcodingblog"
 	series = "series"
 
 [Params]
-	Description = "My input to the positive feedback loop that is the internet."
+	description = "My input to the positive feedback loop that is the internet."
 	Copyright = "Baruch Lubinsky"
 	github = "https://github.com/baruchlubinsky"
 	disqus = "baruchlubinsky"

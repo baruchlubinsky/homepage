@@ -12,7 +12,7 @@ I've recently decided to move my Rails API backend from MongoDB to PostgreSQL. M
 Here are the step for setting up a [Rails-API](https://github.com/rails-api/rails-api) project with a [PostgreSQL](http://www.postgresql.org/).
 
 Development 
-==
+=
 
 Install PostgreSQL using [Homebrew](http://brew.sh/) and create a user for your application.
 
@@ -39,7 +39,7 @@ Edit `config/database.yml` with username and password. And set the adapter to be
 	$: rake db:setup 
 
 Production
-==
+=
 
 [Amazon Web Services](http://aws.amazon.com/) makes it very easy to host Rails applications using [OpsWorks](http://aws.amazon.com/opsworks/) and [RDS](http://aws.amazon.com/rds/). 
 

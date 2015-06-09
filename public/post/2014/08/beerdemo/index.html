@@ -9,14 +9,11 @@
 
   <title> Getting started with Ember and Ember Data using Ember CLI &middot; Baruch Lubinsky </title>
 
-   <meta name="description" content="Develop an application demonstarting how easy it is to build data driven applications using Ember.js."> 
-
   
-  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
-  <link rel="stylesheet" href="http://localhost:1313/css/me.css">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/poole.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/syntax.css">
+  <link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
@@ -26,80 +23,89 @@
   <link href="" rel="alternate" type="application/rss+xml" title="Baruch Lubinsky" />
 </head>
 
+<link rel="stylesheet" href="http://baruch.lubinsky.co.za/css/me.css">
 <body class="layout-reverse">
-<nav class="sidebar">
+<div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-       
-        <p class="lead">
-          Getting started with Ember and Ember Data using Ember CLI
-        </p>
-        
-          <nav id="TableOfContents">
+      <h1><a href="/">Baruch Lubinsky</a></h1>
+      
+      <h3><a href="#">Getting started with Ember and Ember Data using Ember CLI</a></h3> 
+      <nav id="TableOfContents">
+<ul>
+<li><a href="#getting-started:8b3847fac40f60b0b3d5369f69c57d58">Getting started</a></li>
+<li><a href="#models:8b3847fac40f60b0b3d5369f69c57d58">Models</a>
 <ul>
 <li>
 <ul>
-<li><a href="#toc_0">Getting started</a></li>
-<li><a href="#toc_1">Models</a>
+<li>
+<ul>
+<li><a href="#app-models-beer-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/models/beer.js</code></a></li>
+<li><a href="#app-models-comment-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/models/comment.js</code></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#router:8b3847fac40f60b0b3d5369f69c57d58">Router</a>
 <ul>
 <li>
 <ul>
-<li><a href="#toc_2"><code>app/models/beer.js</code></a></li>
-<li><a href="#toc_3"><code>app/models/comment.js</code></a></li>
+<li>
+<ul>
+<li><a href="#app-router-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/router.js</code></a></li>
 </ul></li>
 </ul></li>
-<li><a href="#toc_4">Router</a>
+</ul></li>
+<li><a href="#routes:8b3847fac40f60b0b3d5369f69c57d58">Routes</a>
 <ul>
 <li>
 <ul>
-<li><a href="#toc_5"><code>app/router.js</code></a></li>
+<li>
+<ul>
+<li><a href="#app-routes-beers-index-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/index.js</code></a></li>
+<li><a href="#app-routes-beers-new-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/new.js</code></a></li>
+<li><a href="#app-routes-beers-edit-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/edit.js</code></a></li>
+<li><a href="#app-routes-beers-show-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/show.js</code></a></li>
 </ul></li>
 </ul></li>
-<li><a href="#toc_6">Routes</a>
+</ul></li>
+<li><a href="#controllers-and-views:8b3847fac40f60b0b3d5369f69c57d58">Controllers and Views</a></li>
+<li><a href="#adapter:8b3847fac40f60b0b3d5369f69c57d58">Adapter</a>
 <ul>
 <li>
 <ul>
-<li><a href="#toc_7"><code>app/routes/beers/index.js</code></a></li>
-<li><a href="#toc_8"><code>app/routes/beers/new.js</code></a></li>
-<li><a href="#toc_9"><code>app/routes/beers/edit.js</code></a></li>
-<li><a href="#toc_10"><code>app/routes/beers/show.js</code></a></li>
+<li>
+<ul>
+<li><a href="#app-adapters-application-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/adapters/application.js</code></a></li>
 </ul></li>
 </ul></li>
-<li><a href="#toc_11">Controllers and Views</a></li>
-<li><a href="#toc_12">Adapter</a>
+</ul></li>
+<li><a href="#serializer:8b3847fac40f60b0b3d5369f69c57d58">Serializer</a>
 <ul>
 <li>
 <ul>
-<li><a href="#toc_13"><code>app/adapters/application.js</code></a></li>
+<li>
+<ul>
+<li><a href="#app-serializers-application-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/serializers/application.js</code></a></li>
 </ul></li>
 </ul></li>
-<li><a href="#toc_14">Serializer</a>
+</ul></li>
+<li><a href="#templates:8b3847fac40f60b0b3d5369f69c57d58">Templates</a>
 <ul>
 <li>
 <ul>
-<li><a href="#toc_15"><code>app/serializers/application.js</code></a></li>
-</ul></li>
-</ul></li>
-<li><a href="#toc_16">Templates</a>
-<ul>
 <li>
 <ul>
-<li><a href="#toc_17"><code>app/templates/beers/show.hbs</code></a></li>
+<li><a href="#app-templates-beers-show-hbs:8b3847fac40f60b0b3d5369f69c57d58"><code>app/templates/beers/show.hbs</code></a></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
-</nav>
-        
+</nav> 
       
     </div>
-
-    <ul class="sidebar-nav">
-      <li><a href="/">Home</a> </li>
-      <li><a href="/post">Blog</a> </li>
-    </ul>
+    <p>&copy; 2015. All rights reserved. </p>
   </div>
-</nav>
+</div>
 
     <div class="content container">
 		<article class="post">
@@ -109,19 +115,19 @@
 
 <p>This article describes a minimal <a href="http://emberjs.com/">Ember</a> application. Ember, like <a href="http://rubyonrails.org/">Rails</a>, is designed with a philosophy of convention over configuration. This demo is designed to demonstrate how little code is required to create a functional data driven website by harnessing <a href="http://emberjs.com/guides/models/">Ember Data</a> and the <a href="http://emberjs.com/guides/models/the-rest-adapter/">REST Adapter</a>.</p>
 
-<h2 id="toc_0">Getting started</h2>
+<h1 id="getting-started:8b3847fac40f60b0b3d5369f69c57d58">Getting started</h1>
 
 <p>I use <a href="http://www.ember-cli.com/">Ember CLI</a> to build my site. Ember CLI uses ES6 Modules to organise code. This leads to well structured, logically layed out code (unlike traditional Javascript). For a backend I wrote a <a href="http://appengine.google.com/">Google App Engine</a> program, it does not contain any business logic. All the data processing is handled by the Ember App.</p>
 
 <p>The application keeps track of a list of beers, and comments about each beer. All the CRUD functions are implemented, and the data contains a &ldquo;has-many&rdquo; relationship. The rest of this article explains the files I added to the scaffolding from Ember CLI. <a href="https://github.com/baruchlubinsky/beerdemo/tree/e6a7984c9692a62198ee06ba1961a819ed990c97">Clone the repo.</a></p>
 
-<h2 id="toc_1">Models</h2>
+<h1 id="models:8b3847fac40f60b0b3d5369f69c57d58">Models</h1>
 
 <p>The data model is very simple, two model and one relationship. See the <a href="http://emberjs.com/guides/models/the-rest-adapter/#toc_relationships">docs</a> explaining how <code>async</code> affects the JSON.</p>
 
-<h4 id="toc_2"><code>app/models/beer.js</code></h4>
+<h4 id="app-models-beer-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/models/beer.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> DS.Model.extend({
   name<span style="color: #666666">:</span> DS.attr(<span style="color: #4070a0">&#39;string&#39;</span>),
@@ -129,10 +135,11 @@
   comments<span style="color: #666666">:</span> DS.hasMany(<span style="color: #4070a0">&#39;comment&#39;</span>, {async<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">true</span>}),
 });
 </pre></div>
+</p>
 
-<h4 id="toc_3"><code>app/models/comment.js</code></h4>
+<h4 id="app-models-comment-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/models/comment.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> DS.Model.extend({
   user<span style="color: #666666">:</span> DS.attr(<span style="color: #4070a0">&#39;string&#39;</span>),
@@ -140,201 +147,210 @@
   beer<span style="color: #666666">:</span> DS.belongsTo(<span style="color: #4070a0">&#39;beer&#39;</span>),
 });
 </pre></div>
+</p>
 
-<h2 id="toc_4">Router</h2>
+<h1 id="router:8b3847fac40f60b0b3d5369f69c57d58">Router</h1>
 
 <p>Comments are added at <code>beers.show</code> and records are deleted from <code>beers.edit</code>.</p>
 
-<h4 id="toc_5"><code>app/router.js</code></h4>
+<h4 id="app-router-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/router.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">var</span> Router <span style="color: #666666">=</span> Ember.Router.extend({
   location<span style="color: #666666">:</span> DemoENV.locationType
 });
 
 Router.map(<span style="color: #007020; font-weight: bold">function</span>() {
-    <span style="color: #007020; font-weight: bold">this</span>.resource(<span style="color: #4070a0">&#39;beers&#39;</span>, <span style="color: #007020; font-weight: bold">function</span>() {
-        <span style="color: #007020; font-weight: bold">this</span>.route(<span style="color: #4070a0">&#39;new&#39;</span>);
-        <span style="color: #007020; font-weight: bold">this</span>.route(<span style="color: #4070a0">&#39;show&#39;</span>, {path<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;:id&#39;</span>});
-        <span style="color: #007020; font-weight: bold">this</span>.route(<span style="color: #4070a0">&#39;edit&#39;</span>, {path<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;:id/edit&#39;</span>});
-    });
+	<span style="color: #007020; font-weight: bold">this</span>.resource(<span style="color: #4070a0">&#39;beers&#39;</span>, <span style="color: #007020; font-weight: bold">function</span>() {
+    	<span style="color: #007020; font-weight: bold">this</span>.route(<span style="color: #4070a0">&#39;new&#39;</span>);
+    	<span style="color: #007020; font-weight: bold">this</span>.route(<span style="color: #4070a0">&#39;show&#39;</span>, {path<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;:id&#39;</span>});
+    	<span style="color: #007020; font-weight: bold">this</span>.route(<span style="color: #4070a0">&#39;edit&#39;</span>, {path<span style="color: #666666">:</span> <span style="color: #4070a0">&#39;:id/edit&#39;</span>});
+  	});
 });
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Router;
 </pre></div>
+</p>
 
-<h2 id="toc_6">Routes</h2>
+<h1 id="routes:8b3847fac40f60b0b3d5369f69c57d58">Routes</h1>
 
 <p><code>/beers</code> shows a list of all the beer records.</p>
 
-<h4 id="toc_7"><code>app/routes/beers/index.js</code></h4>
+<h4 id="app-routes-beers-index-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/index.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Ember.Route.extend({
-    model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.find(<span style="color: #4070a0">&#39;beer&#39;</span>);},
+	model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.find(<span style="color: #4070a0">&#39;beer&#39;</span>);},
 });
 </pre></div>
+</p>
 
 <p><code>/beers/new</code> provides allows a new record to be created.</p>
 
-<h4 id="toc_8"><code>app/routes/beers/new.js</code></h4>
+<h4 id="app-routes-beers-new-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/new.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Ember.Route.extend({
-    model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.createRecord(<span style="color: #4070a0">&#39;beer&#39;</span>);},
-    actions<span style="color: #666666">:</span> {
-        create<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
-            <span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
-            <span style="color: #007020; font-weight: bold">this</span>.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>).save().then(
-                <span style="color: #007020; font-weight: bold">function</span>() {
-                    self.transitionTo(<span style="color: #4070a0">&#39;beers.index&#39;</span>);
-                });
-        }
-    }
+	model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.createRecord(<span style="color: #4070a0">&#39;beer&#39;</span>);},
+	actions<span style="color: #666666">:</span> {
+		create<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+			<span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
+			<span style="color: #007020; font-weight: bold">this</span>.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>).save().then(
+				<span style="color: #007020; font-weight: bold">function</span>() {
+					self.transitionTo(<span style="color: #4070a0">&#39;beers.index&#39;</span>);
+				});
+		}
+	}
 });
 </pre></div>
+</p>
 
 <p><code>/beers/:id/edit</code> updates a record. The <code>:id</code> from the URL is available to the model hook as <code>params.id</code>.</p>
 
-<h4 id="toc_9"><code>app/routes/beers/edit.js</code></h4>
+<h4 id="app-routes-beers-edit-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/edit.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Ember.Route.extend({
-    model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(params) {<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.find(<span style="color: #4070a0">&#39;beer&#39;</span>, params.id);},
-    actions<span style="color: #666666">:</span> {
-        save<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
-            <span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
-            self.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>).save().then(
-                <span style="color: #007020; font-weight: bold">function</span>() {
-                    self.transitionTo(<span style="color: #4070a0">&#39;beers.index&#39;</span>);
-                });
-        },
-        <span style="color: #007020; font-weight: bold">delete</span><span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
-            <span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
-            <span style="color: #007020; font-weight: bold">var</span> model <span style="color: #666666">=</span> self.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>); 
-            model.destroyRecord().then(
-                <span style="color: #007020; font-weight: bold">function</span>() {
-                    self.transitionTo(<span style="color: #4070a0">&#39;beers.index&#39;</span>);
-                }, <span style="color: #007020; font-weight: bold">function</span> (error) {
-                    Ember.Logger.debug(error);
-                });
-        }
-    }
+	model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(params) {<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.find(<span style="color: #4070a0">&#39;beer&#39;</span>, params.id);},
+	actions<span style="color: #666666">:</span> {
+		save<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+			<span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
+			self.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>).save().then(
+				<span style="color: #007020; font-weight: bold">function</span>() {
+					self.transitionTo(<span style="color: #4070a0">&#39;beers.index&#39;</span>);
+				});
+		},
+		<span style="color: #007020; font-weight: bold">delete</span><span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+			<span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
+			<span style="color: #007020; font-weight: bold">var</span> model <span style="color: #666666">=</span> self.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>); 
+			model.destroyRecord().then(
+				<span style="color: #007020; font-weight: bold">function</span>() {
+					self.transitionTo(<span style="color: #4070a0">&#39;beers.index&#39;</span>);
+				}, <span style="color: #007020; font-weight: bold">function</span> (error) {
+					Ember.Logger.debug(error);
+				});
+		}
+	}
 });
 </pre></div>
+</p>
 
 <p><code>/beers/:id</code> displays an individual beer record and adds comments to it.</p>
 
-<h4 id="toc_10"><code>app/routes/beers/show.js</code></h4>
+<h4 id="app-routes-beers-show-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/routes/beers/show.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> Ember from <span style="color: #4070a0">&#39;ember&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> Ember.Route.extend({
-    model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(params) {
-        <span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.find(<span style="color: #4070a0">&#39;beer&#39;</span>, params.id);
-    },
-    setupController<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(controller, model) {
-        controller.set(<span style="color: #4070a0">&#39;model&#39;</span>, model);
-        controller.set(<span style="color: #4070a0">&#39;newComment&#39;</span>, <span style="color: #007020; font-weight: bold">this</span>.store.createRecord(<span style="color: #4070a0">&#39;comment&#39;</span>));
-    },
-    actions<span style="color: #666666">:</span> {
-        comment<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
-            <span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
-            <span style="color: #007020; font-weight: bold">var</span> comment <span style="color: #666666">=</span> self.controller.get(<span style="color: #4070a0">&#39;newComment&#39;</span>);
-            <span style="color: #007020; font-weight: bold">var</span> beer <span style="color: #666666">=</span> self.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>);
-            beer.get(<span style="color: #4070a0">&#39;comments&#39;</span>).addObject(comment);
-            comment.save().then( <span style="color: #60a0b0; font-style: italic">// comment first to get an ID</span>
-                <span style="color: #007020; font-weight: bold">function</span>() {
-                    beer.save().then(
-                        <span style="color: #007020; font-weight: bold">function</span>() {
-                            self.controller.set(<span style="color: #4070a0">&#39;newComment&#39;</span>, self.store.createRecord(<span style="color: #4070a0">&#39;comment&#39;</span>));
-                        }
-                    );
-                }
-            );
-        },
-        willTransition<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
-            <span style="color: #007020; font-weight: bold">this</span>.controller.get(<span style="color: #4070a0">&#39;newComment&#39;</span>).destroyRecord();
-            <span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">true</span>;
-        }
-    }
+	model<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(params) {
+		<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>.store.find(<span style="color: #4070a0">&#39;beer&#39;</span>, params.id);
+	},
+	setupController<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(controller, model) {
+    	controller.set(<span style="color: #4070a0">&#39;model&#39;</span>, model);
+    	controller.set(<span style="color: #4070a0">&#39;newComment&#39;</span>, <span style="color: #007020; font-weight: bold">this</span>.store.createRecord(<span style="color: #4070a0">&#39;comment&#39;</span>));
+  	},
+  	actions<span style="color: #666666">:</span> {
+		comment<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+			<span style="color: #007020; font-weight: bold">var</span> self <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>;
+			<span style="color: #007020; font-weight: bold">var</span> comment <span style="color: #666666">=</span> self.controller.get(<span style="color: #4070a0">&#39;newComment&#39;</span>);
+			<span style="color: #007020; font-weight: bold">var</span> beer <span style="color: #666666">=</span> self.controller.get(<span style="color: #4070a0">&#39;model&#39;</span>);
+			beer.get(<span style="color: #4070a0">&#39;comments&#39;</span>).addObject(comment);
+			comment.save().then( <span style="color: #60a0b0; font-style: italic">// comment first to get an ID</span>
+				<span style="color: #007020; font-weight: bold">function</span>() {
+					beer.save().then(
+						<span style="color: #007020; font-weight: bold">function</span>() {
+							self.controller.set(<span style="color: #4070a0">&#39;newComment&#39;</span>, self.store.createRecord(<span style="color: #4070a0">&#39;comment&#39;</span>));
+						}
+					);
+				}
+			);
+		},
+		willTransition<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>() {
+			<span style="color: #007020; font-weight: bold">this</span>.controller.get(<span style="color: #4070a0">&#39;newComment&#39;</span>).destroyRecord();
+			<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">true</span>;
+		}
+	}
 });
 </pre></div>
+</p>
 
 <p>The <code>willTransition</code> handler is necessary to clean up when the route is changed by the back button.</p>
 
-<h2 id="toc_11">Controllers and Views</h2>
+<h1 id="controllers-and-views:8b3847fac40f60b0b3d5369f69c57d58">Controllers and Views</h1>
 
 <p>This application works with the default controllers and views.</p>
 
-<h2 id="toc_12">Adapter</h2>
+<h1 id="adapter:8b3847fac40f60b0b3d5369f69c57d58">Adapter</h1>
 
 <p>Connect Ember Data to the webservice. You&rsquo;re welcome to try out my instance, but if you want to use it more heavily please <a href="https://github.com/baruchlubinsky/everyrest">create your own on the App Engine</a>.</p>
 
-<h4 id="toc_13"><code>app/adapters/application.js</code></h4>
+<h4 id="app-adapters-application-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/adapters/application.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> DS.RESTAdapter.extend({
-    host<span style="color: #666666">:</span> <span style="color: #4070a0">&quot;http://everyrest.appspot.com&quot;</span>,
-    ajax<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(url, method, hash) {
-        hash <span style="color: #666666">=</span> hash <span style="color: #666666">||</span> {}; <span style="color: #60a0b0; font-style: italic">// hash may be undefined</span>
-        hash.crossDomain <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">true</span>;
-        hash.xhrFields <span style="color: #666666">=</span> {withCredentials<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">false</span>};
-        <span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>._super(url, method, hash);        
-    }
+	host<span style="color: #666666">:</span> <span style="color: #4070a0">&quot;http://everyrest.appspot.com&quot;</span>,
+	ajax<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(url, method, hash) {
+ 		hash <span style="color: #666666">=</span> hash <span style="color: #666666">||</span> {}; <span style="color: #60a0b0; font-style: italic">// hash may be undefined</span>
+ 		hash.crossDomain <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">true</span>;
+ 		hash.xhrFields <span style="color: #666666">=</span> {withCredentials<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">false</span>};
+ 		<span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">this</span>._super(url, method, hash);		
+ 	}
 });
 </pre></div>
+</p>
 
-<h2 id="toc_14">Serializer</h2>
+<h1 id="serializer:8b3847fac40f60b0b3d5369f69c57d58">Serializer</h1>
 
 <p>See the <a href="// http://emberjs.com/api/data/classes/DS.RESTSerializer.html#method_serializeHasMany">docs</a> to see how this causes a model to write an array of its &ldquo;has-many&rdquo; ID&rsquo;s to the server. This is not the defualt since most servers take responsibility for tracking relationships in the data.</p>
 
-<h4 id="toc_15"><code>app/serializers/application.js</code></h4>
+<h4 id="app-serializers-application-js:8b3847fac40f60b0b3d5369f69c57d58"><code>app/serializers/application.js</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">import</span> DS from <span style="color: #4070a0">&#39;ember-data&#39;</span>;
 
 <span style="color: #007020; font-weight: bold">export</span> <span style="color: #007020; font-weight: bold">default</span> DS.RESTSerializer.extend({
-    serialize<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(record, options) {
-        <span style="color: #007020; font-weight: bold">var</span> json <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>._super(record, options);
-        record.eachRelationship(<span style="color: #007020; font-weight: bold">function</span>(name, relationship) {
-          <span style="color: #007020; font-weight: bold">if</span> (relationship.kind <span style="color: #666666">===</span> <span style="color: #4070a0">&#39;hasMany&#39;</span>) {
-            json[name] <span style="color: #666666">=</span> record.get(name).mapBy(<span style="color: #4070a0">&#39;id&#39;</span>);
-          }
-        });
-        <span style="color: #007020; font-weight: bold">return</span> json;
-      }
+	serialize<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">function</span>(record, options) {
+	    <span style="color: #007020; font-weight: bold">var</span> json <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">this</span>._super(record, options);
+	    record.eachRelationship(<span style="color: #007020; font-weight: bold">function</span>(name, relationship) {
+	      <span style="color: #007020; font-weight: bold">if</span> (relationship.kind <span style="color: #666666">===</span> <span style="color: #4070a0">&#39;hasMany&#39;</span>) {
+	        json[name] <span style="color: #666666">=</span> record.get(name).mapBy(<span style="color: #4070a0">&#39;id&#39;</span>);
+	      }
+	    });
+	    <span style="color: #007020; font-weight: bold">return</span> json;
+	  }
 });) 
 </pre></div>
+</p>
 
-<h2 id="toc_16">Templates</h2>
+<h1 id="templates:8b3847fac40f60b0b3d5369f69c57d58">Templates</h1>
 
 <p>There is nothing special about the <a href="http://emberjs.com/guides/templates/handlebars-basics/">templates</a> I have used in this app. Here is the template for <code>show</code> as an example.</p>
 
-<h4 id="toc_17"><code>app/templates/beers/show.hbs</code></h4>
+<h4 id="app-templates-beers-show-hbs:8b3847fac40f60b0b3d5369f69c57d58"><code>app/templates/beers/show.hbs</code></h4>
 
-<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #062873; font-weight: bold">&lt;h2&gt;</span><span style="color: #007020">{{</span><span style="color: #bb60d5">name</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&lt;/h2&gt;</span>
-<span style="color: #062873; font-weight: bold">&lt;h3&gt;</span><span style="color: #007020">{{</span><span style="color: #bb60d5">type</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&lt;/h3&gt;</span>
+<p><div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #062873; font-weight: bold">&lt;h2&gt;</span>{{name}}<span style="color: #062873; font-weight: bold">&lt;/h2&gt;</span>
+<span style="color: #062873; font-weight: bold">&lt;h3&gt;</span>{{type}}<span style="color: #062873; font-weight: bold">&lt;/h3&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;h4&gt;</span>Comments<span style="color: #062873; font-weight: bold">&lt;/h4&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;ul&gt;</span>
-<span style="color: #007020">{{</span><span style="border: 1px solid #FF0000">#</span><span style="color: #bb60d5">each</span> <span style="color: #bb60d5">model.comments</span><span style="color: #007020">}}</span>
+{{#each model.comments}}
 <span style="color: #062873; font-weight: bold">&lt;li&gt;</span>
-    <span style="color: #062873; font-weight: bold">&lt;p&gt;</span><span style="color: #007020">{{</span><span style="color: #bb60d5">message</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&lt;/p&gt;</span>
-    <span style="color: #062873; font-weight: bold">&lt;em&gt;</span><span style="color: #007020">{{</span><span style="color: #bb60d5">user</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&lt;/em&gt;</span>
+	<span style="color: #062873; font-weight: bold">&lt;p&gt;</span>{{message}}<span style="color: #062873; font-weight: bold">&lt;/p&gt;</span>
+	<span style="color: #062873; font-weight: bold">&lt;em&gt;</span>{{user}}<span style="color: #062873; font-weight: bold">&lt;/em&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;/li&gt;</span>
-<span style="color: #007020">{{</span><span style="color: #666666">/</span><span style="color: #bb60d5">each</span><span style="color: #007020">}}</span>
+{{/each}}
 <span style="color: #062873; font-weight: bold">&lt;/ul&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;h4&gt;</span>Post<span style="color: #062873; font-weight: bold">&lt;/h4&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;p&gt;</span>Name:<span style="color: #062873; font-weight: bold">&lt;/br&gt;</span>
-<span style="color: #007020">{{</span><span style="color: #bb60d5">input</span> <span style="color: #bb60d5">value</span><span style="color: #666666">=</span><span style="color: #bb60d5">newComment.user</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&lt;/p&gt;</span>
+{{input value=newComment.user}}<span style="color: #062873; font-weight: bold">&lt;/p&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;p&gt;</span>Comment:<span style="color: #062873; font-weight: bold">&lt;/br&gt;</span>
-<span style="color: #007020">{{</span><span style="color: #bb60d5">textarea</span> <span style="color: #bb60d5">value</span><span style="color: #666666">=</span><span style="color: #bb60d5">newComment.message</span> <span style="color: #bb60d5">cols</span><span style="color: #666666">=</span><span style="color: #4070a0">&quot;40&quot;</span> <span style="color: #bb60d5">rows</span><span style="color: #666666">=</span><span style="color: #4070a0">&quot;4&quot;</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&lt;/p&gt;</span>
-<span style="color: #062873; font-weight: bold">&lt;button</span> <span style="color: #007020">{{</span><span style="color: #bb60d5">action</span> <span style="color: #4070a0">&#39;comment&#39;</span><span style="color: #007020">}}</span><span style="color: #062873; font-weight: bold">&gt;</span>Comment<span style="color: #062873; font-weight: bold">&lt;/button&gt;</span>
+{{textarea value=newComment.message cols=&quot;40&quot; rows=&quot;4&quot;}}<span style="color: #062873; font-weight: bold">&lt;/p&gt;</span>
+<span style="color: #062873; font-weight: bold">&lt;button</span> <span style="border: 1px solid #FF0000">{{</span><span style="color: #4070a0">action</span> <span style="border: 1px solid #FF0000">&#39;</span><span style="color: #4070a0">comment</span><span style="border: 1px solid #FF0000">&#39;}}</span><span style="color: #062873; font-weight: bold">&gt;</span>Comment<span style="color: #062873; font-weight: bold">&lt;/button&gt;</span>
 </pre></div>
+</p>
 
 		</article>
 		<hr>
@@ -355,9 +371,9 @@ Router.map(<span style="color: #007020; font-weight: bold">function</span>() {
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'blcodingblog';
-    var disqus_identifier = 'http:\/\/localhost:1313\/post\/2014\/08\/beerdemo\/';
+    var disqus_identifier = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/beerdemo\/';
     var disqus_title = 'Getting started with Ember and Ember Data using Ember CLI';
-    var disqus_url = 'http:\/\/localhost:1313\/post\/2014\/08\/beerdemo\/';
+    var disqus_url = 'http:\/\/baruch.lubinsky.co.za\/post\/2014\/08\/beerdemo\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -371,8 +387,5 @@ Router.map(<span style="color: #007020; font-weight: bold">function</span>() {
         <a href="/post/2014/08/thiswebsite/">Acknowledgments</a>
       </div>
 	</div>
-  <script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+  </body>
 </html>

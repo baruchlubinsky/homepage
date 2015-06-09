@@ -1,181 +1,155 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Ember on Baruch Lubinsky </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/tags/ember/index.xml</link>
+    <title>Ember on Baruch Lubinsky</title>
+    <link>http://baruch.lubinsky.co.za/tags/ember/</link>
+    <description>Recent content in Ember on Baruch Lubinsky</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
-    <updated>Sat, 11 Oct 2014 08:42:59 UTC</updated>
-    
-    <item>
-      <title>MVC is dead, long live MVC</title>
-      <link>http://localhost:1313/post/2014/10/mvc/</link>
-      <pubDate>Sat, 11 Oct 2014 08:42:59 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/10/mvc/</guid>
-      <description>&lt;p&gt;Modern software development is all about frameworks. The vast majority of projects can be built on top of a vast amount of pre-existing work. Who ever stops to think about the percentage of lines of code in their Rails project that they wrote themselves? These frameworks have made it spectacularly easy to produce very complex applications. Consider an iOS app, written in a weekend by a twelve year old, that goes on to be downloaded a million times. But they have also made us lazy and dependent. Not that a developer should reinvent the wheel, but lazy to learn how the frameworks are designed in order to understand their best usage, and limitations.&lt;/p&gt;
-
-&lt;p&gt;Doing modern web (and occasional mobile app) development, I&amp;rsquo;m constantly working with MVC frameworks. &lt;a href=&#34;http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller&#34;&gt;Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces.&lt;/a&gt; The key word in that definition is &amp;ldquo;pattern&amp;rdquo;. MVC is not a set of rules, its a suggestion. You can implement the pattern without using the words &amp;ldquo;model&amp;rdquo;, &amp;ldquo;view&amp;rdquo;, &amp;ldquo;controller&amp;rdquo; and you can have classes with those names without implementing the pattern. I think that it is essential for a software developer to be aware of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Design_pattern&#34;&gt;design pattern&lt;/a&gt; she is using.&lt;/p&gt;
-
-&lt;p&gt;Its easy to to get the impression that MVC is the only reasonable way to build a data driven user interface. Especially web sites. A quick look at this &lt;a href=&#34;http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks#Comparison_of_features&#34;&gt;comprehensive list&lt;/a&gt; of web frameworks reveals just how popular MVC is. And for good reason, it is an extremely effective way model user interactions with a website (or mobile app).&lt;/p&gt;
-
-&lt;p&gt;This article isn&amp;rsquo;t about the suitability of MVC as a pattern for web frameworks. Rather I want to look a bit deeper at the features of MVC that make it so useful, and to discuss how these can applied outside of the pattern with the same advantages. MVC predates Rails by at least 11 years. It was conceptualised without any intention of being used for modern web applications.&lt;/p&gt;
-
-&lt;p&gt;MVC is just one example of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;Observer Pattern&lt;/a&gt;. Which in turn is a way of following the &lt;a href=&#34;http://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;separation of concerns&lt;/a&gt; principle that is a corner stone of object orientated programming philosophy. That is the concept that code should be organised in small components, each with a well defined purpose. And that these logical roles are confined within their module. In fact separation of concerns should be a guiding principle of any software development project; it is essential for creating maintainable code.&lt;/p&gt;
-
-&lt;p&gt;The observer pattern is approach for ensuring that your concerns are separated. Of course the different modules of a program need to interact with each other, while each is performing its intended role. The observer pattern accomplishes this communication by having objects, called the subject, maintain a list of dependants that are its observers. When the state changes in the object, it notifies its observes and they can take the appropriate action. No data flows from the observer to the subject. In this way the responsibilities of each object (module, script, whatever) and their relationships to each other are clearly defined.&lt;/p&gt;
-
-&lt;p&gt;MVC is easily explained in that context. A program is made up of components which are either a &amp;ldquo;model&amp;rdquo;, &amp;ldquo;view&amp;rdquo; or &amp;ldquo;controller&amp;rdquo;. A controller observes a model, and view observes the controller. The model is represents the underlying data and the user interacts with the view. Each of these components takes on a different appearance depending on the application.&lt;/p&gt;
-
-&lt;p&gt;In a Rails application the model classes are responsible for wrapping the database; the controllers are observe the data in the model and make it available to the views; and the views are responsible for presenting the the data to the user. The web page is not the view. The class which parses the templates is the view (of MVC, obviously its convenient to call the template a view). The view does not communicate with the controller. When you make a request, any changes that were made on the data are sent to the server, which updates the model, and then a new MVC stack is instantiated to return the result.&lt;/p&gt;
-
-&lt;p&gt;Ember and its cousins are often referred to as frontend MVC frameworks. I don&amp;rsquo;t have any experience with the others, but Ember is not an MVC. Two way binding - which is essential in a data driven web page - absolutely violates the pattern. There are classes called &amp;ldquo;model&amp;rdquo;, &amp;ldquo;view&amp;rdquo; and &amp;ldquo;controller&amp;rdquo;, and their functions are similar to those in Rails, but not the same. The controller decorates the data in the model for use by the view. However changing a value in the view, updates the model. Models observe views, and views observe models (via the controller).&lt;/p&gt;
-
-&lt;p&gt;And that&amp;rsquo;s just fine. MVC is a powerful pattern and has proven to be very effective for writing web servers, but its not the right fit for all problems. It is crucial as a developer to understand the frameworks that you are using. To know how they are designed, their intended usage and when it is appropriate to bend or break their rules.&lt;/p&gt;
-
-&lt;p&gt;Ember views are not supposed to directly interact with models. But they can, there&amp;rsquo;s nothing stopping you from creating a view that has a model property. I have written an Ember application demonstrating what can be achieved by ignoring the architecture of a framework. &lt;a href=&#34;http://baruch.lubinsky.co.za/workflowy/&#34;&gt;This&lt;/a&gt; is an implementation of &lt;a href=&#34;https://workflowy.com&#34;&gt;workflowy&lt;/a&gt; a hierarchical list keeping application, with source code &lt;a href=&#34;https://github.com/baruchlubinsky/ember-workflowy&#34;&gt;here&lt;/a&gt;. The majority of the code is in &lt;a href=&#34;https://github.com/baruchlubinsky/ember-workflowy/blob/master/app/components/list-item.js&#34;&gt;this component&lt;/a&gt; (components are views in an architectural sense). The component has a property which references a model. By accessing the model directly, the component is able to recursively render itself and all its child nodes. This recursive rendering means that actions on the data are most easily handled within the component that is rendering the model. Such a pattern violates the way the Ember is supposed to be used, but it allowed me to create a very powerful application while writing minimal code.&lt;/p&gt;
-
-&lt;p&gt;It is irresponsible as a developer to try to do everything from scratch. There is an unprecedented wealth of open source code covering most application domains. To be an effective developer one must leverage the work of others. However it is too easy to just take their code for granted. One must understand how the framework is supposed to work and when it is appropriate to contravene that. If your code is frustrating you, ask yourself: &amp;ldquo;am I writing this because of my application&amp;rsquo;s logic, or in order to fit in with the framework?&amp;rdquo; Conventions are great they can greatly simplify development, but there are no holy cows, the intended purpose of the application must always be foremost in its development.&lt;/p&gt;
-</description>
-    </item>
+    <lastBuildDate>Thu, 04 Sep 2014 17:42:00 +0000</lastBuildDate>
+    <atom:link href="http://baruch.lubinsky.co.za/tags/ember/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Ember component for secure file upload to S3</title>
-      <link>http://localhost:1313/post/2014/09/emberuploads3/</link>
-      <pubDate>Thu, 04 Sep 2014 17:42:00 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/09/emberuploads3/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</link>
+      <pubDate>Thu, 04 Sep 2014 17:42:00 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/09/emberuploads3/</guid>
       <description>
 
 &lt;p&gt;Last time I worked with seriously with Ember was before the addition of components (everything was a view). I&amp;rsquo;m enjoying learning it again in its current, much more mature, state. This article is about a component I created based on the standard HTML file input control. The component retrieves &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html&#34;&gt;temporary credentials for S3&lt;/a&gt; from an API and produces a &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/FormData&#34;&gt;FormData&lt;/a&gt; object ready to post the selected file.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Multi-tenant File Storage&lt;/h2&gt;
+&lt;h1 id=&#34;multi-tenant-file-storage:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;Multi-tenant File Storage&lt;/h1&gt;
 
 &lt;p&gt;This project is born out of a need to host sensitive user data on &lt;a href=&#34;http://aws.amazon.com/&#34;&gt;AWS&lt;/a&gt; using &lt;a href=&#34;http://aws.amazon.com/s3/&#34;&gt;S3&lt;/a&gt;. Each user must be certain that their data is protected not only from public access but also from other users of the system. S3 provides functionality to restrict access to the files it hosts. The approach I have taken does not grant anyone access to the bucket. All requests must be temporarily granted permission. For uploading this is achieved using a &amp;ldquo;Presigned Post&amp;rdquo;.&lt;/p&gt;
 
 &lt;p&gt;The bucket does not grant access to any user. Rather I create a &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html&#34;&gt;IAM role&lt;/a&gt; that has rights to upload to the bucket. Then let the webserver running the backend API assume that role. The bucket must also allow &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html&#34;&gt;CORS&lt;/a&gt; requests.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Backend API&lt;/h2&gt;
+&lt;h1 id=&#34;backend-api:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;Backend API&lt;/h1&gt;
 
 &lt;p&gt;The backend I am using here is a &lt;a href=&#34;https://github.com/rails-api/rails-api&#34;&gt;Rails-API&lt;/a&gt; application. Of course any sort of backend will do, Rails is nice here because there is an official &lt;a href=&#34;http://docs.aws.amazon.com/AWSRubySDK/latest/frames.html&#34;&gt;AWS SDK for Ruby&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The backend must provide the signed data for the POST. In reality it should also authenticate users before doing so. The following code can be used to create the fields that are required:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020&#34;&gt;require&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;date&amp;#39;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020&#34;&gt;require&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;date&amp;#39;&lt;/span&gt;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;FilestoreController&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;ApplicationController&lt;/span&gt;
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;upload&lt;/span&gt;
-        s3 &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #517918&#34;&gt;AWS&lt;/span&gt;:&lt;span style=&#34;color: #517918&#34;&gt;:S3&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;new
-        bucket &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; s3&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;buckets&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;Rails&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;configuration&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;filestore&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:upload&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;exists? 
-            render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;error&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Upload bucket &lt;/span&gt;&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;#{&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;name&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt; does not exist.&amp;quot;&lt;/span&gt;}, &lt;span style=&#34;color: #517918&#34;&gt;status&lt;/span&gt;: &lt;span style=&#34;color: #40a070&#34;&gt;404&lt;/span&gt;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt;
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
-        access_key_id &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;AWS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;config&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;credentials&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:access_key_id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
-        policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;presigned_post({&lt;span style=&#34;color: #517918&#34;&gt;expires&lt;/span&gt;: &lt;span style=&#34;color: #60add5&#34;&gt;Time&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;now&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;utc &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;})
-        form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;fields
-        render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;form&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;url&lt;/span&gt;: policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;url&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;to_s, &lt;span style=&#34;color: #517918&#34;&gt;fields&lt;/span&gt;: {
-                &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;signature&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
-                &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
-                &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;access_key_id&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; access_key_id,
-            }}}
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;upload&lt;/span&gt;
+		s3 &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;AWS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;S3&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;new
+		bucket &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; s3&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;buckets&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;Rails&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;configuration&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;filestore&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:upload&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;exists? 
+			render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;error&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Upload bucket &lt;/span&gt;&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;#{&lt;/span&gt;bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;name&lt;span style=&#34;color: #70a0d0; font-style: italic&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt; does not exist.&amp;quot;&lt;/span&gt;}, &lt;span style=&#34;color: #517918&#34;&gt;status&lt;/span&gt;: &lt;span style=&#34;color: #40a070&#34;&gt;404&lt;/span&gt;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt;
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
+		access_key_id &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;AWS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;config&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;credentials&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #517918&#34;&gt;:access_key_id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
+		policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; bucket&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;presigned_post({&lt;span style=&#34;color: #517918&#34;&gt;expires&lt;/span&gt;: &lt;span style=&#34;color: #60add5&#34;&gt;Time&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;now&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;utc &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;60&lt;/span&gt;})
+		form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;fields
+		render &lt;span style=&#34;color: #517918&#34;&gt;json&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;form&lt;/span&gt;: {&lt;span style=&#34;color: #517918&#34;&gt;url&lt;/span&gt;: policy&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;url&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;to_s, &lt;span style=&#34;color: #517918&#34;&gt;fields&lt;/span&gt;: {
+				&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;signature&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
+				&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; form&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;,
+				&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;access_key_id&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; access_key_id,
+			}}}
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;This code uses the SDK to calculate the policy and signature fields as required. (The documentation about this is very confusing but it seems that this is enough.) For added security, the policy can made more specific.&lt;/p&gt;
 
 &lt;p&gt;I like to host my Ember application separately from the backend. In that case you must have your Rails application set up for CORS. A nice simple way to do this is in the application controller.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ApplicationController&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #517918&#34;&gt;ActionController&lt;/span&gt;:&lt;span style=&#34;color: #517918&#34;&gt;:API&lt;/span&gt;
-    before_filter &lt;span style=&#34;color: #517918&#34;&gt;:cors&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ApplicationController&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #60add5&#34;&gt;ActionController&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #60add5&#34;&gt;API&lt;/span&gt;
+	before_filter &lt;span style=&#34;color: #517918&#34;&gt;:cors&lt;/span&gt;
 
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;cors&lt;/span&gt;
-        response&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;headers&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;merge! &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Methods&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST, PUT, GET, DELETE&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Headers&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Origin, Accept, Content-Type&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;cors&lt;/span&gt;
+    	response&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;headers&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;merge! &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Methods&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST, PUT, GET, DELETE&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Access-Control-Allow-Headers&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Origin, Accept, Content-Type&amp;#39;&lt;/span&gt;
+  	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;File chooser&lt;/h2&gt;
+&lt;h1 id=&#34;file-chooser:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;File chooser&lt;/h1&gt;
 
 &lt;p&gt;I wanted to create a component that could be used a &amp;ldquo;drop in replacement&amp;rdquo; for &lt;code&gt;&amp;lt;input type=&amp;quot;file&amp;quot;&amp;gt;&lt;/code&gt;. So that it could be used withing existing javascript solutions for file uploads. This solution doesn&amp;rsquo;t realise that perfectly, but I like the way that it uses an existing HTML element.&lt;/p&gt;
 
 &lt;p&gt;The component is defined (in an &lt;a href=&#34;http://www.ember-cli.com/&#34;&gt;Ember-CLI&lt;/a&gt; project) in &lt;code&gt;app/components/s3-upload.js&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Component.extend({
-    tagName&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;input&amp;#39;&lt;/span&gt;,
-    type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;file&amp;#39;&lt;/span&gt;,
-    attributeBindings&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;type&amp;#39;&lt;/span&gt;],
-    folder&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
-    didInsertElement&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-        self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;);
-        self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Authenticating...&amp;#39;&lt;/span&gt;);
-        Ember.$.ajax(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;http://url.for.backend/upload_form&amp;#39;&lt;/span&gt;).then(
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
-                self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;);
-                self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Select a file to upload.&amp;#39;&lt;/span&gt;);
-                self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;, response.form);
-            },
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Unable to connect with S3.&amp;#39;&lt;/span&gt;);
-            }
-        );
-    },
-    change&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; FormData();
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; input &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;element&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;folder&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; key &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; input.value.split(&lt;span style=&#34;color: #235388&#34;&gt;/(\\|\/)/g&lt;/span&gt;).pop();
-        
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;, key);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt;, policy.fields.signature);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;AWSAccessKeyId&amp;quot;&lt;/span&gt;, policy.fields.access_key_id);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt;, policy.fields.policy);
-        form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;file&amp;quot;&lt;/span&gt;, input.files[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;]);
-        
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ajaxOptions&amp;#39;&lt;/span&gt;, {
-            url&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; policy.url,
-            data&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; form,
-            contentType&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
-            type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;,
-            processData&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
-            }
-        );
-    }
+	tagName&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;input&amp;#39;&lt;/span&gt;,
+	type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;file&amp;#39;&lt;/span&gt;,
+	attributeBindings&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;type&amp;#39;&lt;/span&gt;],
+	folder&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
+	didInsertElement&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+		self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;);
+		self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Authenticating...&amp;#39;&lt;/span&gt;);
+		Ember.$.ajax(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;http://url.for.backend/upload_form&amp;#39;&lt;/span&gt;).then(
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
+				self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;disabled&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;);
+				self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Select a file to upload.&amp;#39;&lt;/span&gt;);
+				self.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;, response.form);
+			},
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(response) {
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;alt&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;Unable to connect with S3.&amp;#39;&lt;/span&gt;);
+			}
+		);
+	},
+	change&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; policy &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;policy&amp;#39;&lt;/span&gt;);
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; form &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; FormData();
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; input &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;element&amp;#39;&lt;/span&gt;);
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;folder&amp;#39;&lt;/span&gt;);
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; key &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; folder &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; input.value.split(&lt;span style=&#34;color: #235388&#34;&gt;/(\\|\/)/g&lt;/span&gt;).pop();
+		
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;, key);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;signature&amp;quot;&lt;/span&gt;, policy.fields.signature);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;AWSAccessKeyId&amp;quot;&lt;/span&gt;, policy.fields.access_key_id);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;policy&amp;quot;&lt;/span&gt;, policy.fields.policy);
+		form.append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;file&amp;quot;&lt;/span&gt;, input.files[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;]);
+		
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ajaxOptions&amp;#39;&lt;/span&gt;, {
+			url&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; policy.url,
+			data&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; form,
+			contentType&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
+			type&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;,
+			processData&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;,
+			}
+		);
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;No template is required. The component reveals an &lt;code&gt;ajaxOptions&lt;/code&gt; property that contains all the data required to upload the file. Similar to the original element, the upload must be executed externally.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;didInsertElement&lt;/code&gt; event sends a request to the backend to retrieve the presigned fields that are saved in the components &amp;lsquo;policy&amp;rsquo; property. Then when a file is selected a &lt;code&gt;FormData&lt;/code&gt; object is created. S3 expects the uploaded file to be in the &lt;code&gt;file&lt;/code&gt; field. The form is added to a hash of AJAx options ready to be posted. &lt;code&gt;processData&lt;/code&gt; must be false to prevent jQuery from attempting to parse the file.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;Usage&lt;/h2&gt;
+&lt;h1 id=&#34;usage:cd7d5078b0d7cee2cb2c4cbbe787bf20&#34;&gt;Usage&lt;/h1&gt;
 
 &lt;p&gt;The file selector is designed to be usable in various ways. The most simple one I came up with wraps it in another component including an upload button. The template for that component is:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;s3-upload&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;ajaxOptions&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;formToPost&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;folder&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;folder&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;
-&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;doUpload&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;bind-attr&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;disabled&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Upload&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{{s3-upload ajaxOptions=formToPost disabled=disabled folder=folder}}
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;doUpload&lt;/span&gt;&lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;}}&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;bind-attr&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;disabled=disabled}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Upload&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;This binds the disabled properties to eachother so that the upload button is disabled while the file input is disabled. The ajax options containing the file data are bound to &lt;code&gt;formToPost&lt;/code&gt;. The code for this wrapper is:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Component.extend({
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        doUpload&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; opts &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;formToPost&amp;#39;&lt;/span&gt;);
-            Ember.$.ajax(opts);
-        }
-    }
+	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		doUpload&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; opts &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;formToPost&amp;#39;&lt;/span&gt;);
+			Ember.$.ajax(opts);
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;The hash prepared in the &lt;code&gt;s3-upload&lt;/code&gt; is ready to be used by &lt;code&gt;$.ajax&lt;/code&gt;. This is a minimal implementation of that component. It is designed to be usable within a more complicated user interface - there are already many good javascript solutions out there. Of course the results of the ajax call should be handled.&lt;/p&gt;
 </description>
@@ -183,27 +157,27 @@
     
     <item>
       <title>Getting started with Ember and Ember Data using Ember CLI</title>
-      <link>http://localhost:1313/post/2014/08/beerdemo/</link>
-      <pubDate>Wed, 13 Aug 2014 18:38:22 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/beerdemo/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</link>
+      <pubDate>Wed, 13 Aug 2014 18:38:22 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/beerdemo/</guid>
       <description>
 
 &lt;p&gt;This article describes a minimal &lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember&lt;/a&gt; application. Ember, like &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, is designed with a philosophy of convention over configuration. This demo is designed to demonstrate how little code is required to create a functional data driven website by harnessing &lt;a href=&#34;http://emberjs.com/guides/models/&#34;&gt;Ember Data&lt;/a&gt; and the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/&#34;&gt;REST Adapter&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Getting started&lt;/h2&gt;
+&lt;h1 id=&#34;getting-started:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Getting started&lt;/h1&gt;
 
 &lt;p&gt;I use &lt;a href=&#34;http://www.ember-cli.com/&#34;&gt;Ember CLI&lt;/a&gt; to build my site. Ember CLI uses ES6 Modules to organise code. This leads to well structured, logically layed out code (unlike traditional Javascript). For a backend I wrote a &lt;a href=&#34;http://appengine.google.com/&#34;&gt;Google App Engine&lt;/a&gt; program, it does not contain any business logic. All the data processing is handled by the Ember App.&lt;/p&gt;
 
 &lt;p&gt;The application keeps track of a list of beers, and comments about each beer. All the CRUD functions are implemented, and the data contains a &amp;ldquo;has-many&amp;rdquo; relationship. The rest of this article explains the files I added to the scaffolding from Ember CLI. &lt;a href=&#34;https://github.com/baruchlubinsky/beerdemo/tree/e6a7984c9692a62198ee06ba1961a819ed990c97&#34;&gt;Clone the repo.&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Models&lt;/h2&gt;
+&lt;h1 id=&#34;models:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Models&lt;/h1&gt;
 
 &lt;p&gt;The data model is very simple, two model and one relationship. See the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/#toc_relationships&#34;&gt;docs&lt;/a&gt; explaining how &lt;code&gt;async&lt;/code&gt; affects the JSON.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_2&#34;&gt;&lt;code&gt;app/models/beer.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-models-beer-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/models/beer.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.Model.extend({
   name&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.attr(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;),
@@ -211,10 +185,11 @@
   comments&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.hasMany(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;, {async&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;}),
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_3&#34;&gt;&lt;code&gt;app/models/comment.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-models-comment-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/models/comment.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.Model.extend({
   user&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.attr(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;),
@@ -222,201 +197,210 @@
   beer&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DS.belongsTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;),
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_4&#34;&gt;Router&lt;/h2&gt;
+&lt;h1 id=&#34;router:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Router&lt;/h1&gt;
 
 &lt;p&gt;Comments are added at &lt;code&gt;beers.show&lt;/code&gt; and records are deleted from &lt;code&gt;beers.edit&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_5&#34;&gt;&lt;code&gt;app/router.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-router-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/router.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; Router &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; Ember.Router.extend({
   location&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; DemoENV.locationType
 });
 
 Router.map(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.resource(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;new&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;show&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id&amp;#39;&lt;/span&gt;});
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;edit&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id/edit&amp;#39;&lt;/span&gt;});
-    });
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.resource(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;new&amp;#39;&lt;/span&gt;);
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;show&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id&amp;#39;&lt;/span&gt;});
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.route(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;edit&amp;#39;&lt;/span&gt;, {path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;:id/edit&amp;#39;&lt;/span&gt;});
+  	});
 });
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Router;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_6&#34;&gt;Routes&lt;/h2&gt;
+&lt;h1 id=&#34;routes:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Routes&lt;/h1&gt;
 
 &lt;p&gt;&lt;code&gt;/beers&lt;/code&gt; shows a list of all the beer records.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_7&#34;&gt;&lt;code&gt;app/routes/beers/index.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-index-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/index.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/beers/new&lt;/code&gt; provides allows a new record to be created.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_8&#34;&gt;&lt;code&gt;app/routes/beers/new.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-new-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/new.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        create&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
-                });
-        }
-    }
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;);},
+	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		create&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
+				});
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/beers/:id/edit&lt;/code&gt; updates a record. The &lt;code&gt;:id&lt;/code&gt; from the URL is available to the model hook as &lt;code&gt;params.id&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_9&#34;&gt;&lt;code&gt;app/routes/beers/edit.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-edit-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/edit.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);},
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        save&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
-                });
-        },
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;delete&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; model &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;); 
-            model.destroyRecord().then(
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
-                }, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; (error) {
-                    Ember.Logger.debug(error);
-                });
-        }
-    }
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);},
+	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		save&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;).save().then(
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
+				});
+		},
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;delete&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; model &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;); 
+			model.destroyRecord().then(
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					self.transitionTo(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beers.index&amp;#39;&lt;/span&gt;);
+				}, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; (error) {
+					Ember.Logger.debug(error);
+				});
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/beers/:id&lt;/code&gt; displays an individual beer record and adds comments to it.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_10&#34;&gt;&lt;code&gt;app/routes/beers/show.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-routes-beers-show-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/routes/beers/show.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; Ember from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; Ember.Route.extend({
-    model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);
-    },
-    setupController&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(controller, model) {
-        controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;, model);
-        controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
-    },
-    actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
-        comment&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; comment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;);
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; beer &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;);
-            beer.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comments&amp;#39;&lt;/span&gt;).addObject(comment);
-            comment.save().then( &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// comment first to get an ID&lt;/span&gt;
-                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                    beer.save().then(
-                        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-                            self.controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, self.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
-                        }
-                    );
-                }
-            );
-        },
-        willTransition&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;).destroyRecord();
-            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
-        }
-    }
+	model&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(params) {
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.find(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;beer&amp;#39;&lt;/span&gt;, params.id);
+	},
+	setupController&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(controller, model) {
+    	controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;, model);
+    	controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
+  	},
+  	actions&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; {
+		comment&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; self &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;;
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; comment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;);
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; beer &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; self.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;);
+			beer.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comments&amp;#39;&lt;/span&gt;).addObject(comment);
+			comment.save().then( &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// comment first to get an ID&lt;/span&gt;
+				&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+					beer.save().then(
+						&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+							self.controller.set(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;, self.store.createRecord(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;));
+						}
+					);
+				}
+			);
+		},
+		willTransition&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;() {
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;.controller.get(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;newComment&amp;#39;&lt;/span&gt;).destroyRecord();
+			&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+		}
+	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;willTransition&lt;/code&gt; handler is necessary to clean up when the route is changed by the back button.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_11&#34;&gt;Controllers and Views&lt;/h2&gt;
+&lt;h1 id=&#34;controllers-and-views:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Controllers and Views&lt;/h1&gt;
 
 &lt;p&gt;This application works with the default controllers and views.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_12&#34;&gt;Adapter&lt;/h2&gt;
+&lt;h1 id=&#34;adapter:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Adapter&lt;/h1&gt;
 
 &lt;p&gt;Connect Ember Data to the webservice. You&amp;rsquo;re welcome to try out my instance, but if you want to use it more heavily please &lt;a href=&#34;https://github.com/baruchlubinsky/everyrest&#34;&gt;create your own on the App Engine&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_13&#34;&gt;&lt;code&gt;app/adapters/application.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-adapters-application-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/adapters/application.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.RESTAdapter.extend({
-    host&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://everyrest.appspot.com&amp;quot;&lt;/span&gt;,
-    ajax&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(url, method, hash) {
-        hash &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; hash &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; {}; &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// hash may be undefined&lt;/span&gt;
-        hash.crossDomain &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
-        hash.xhrFields &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; {withCredentials&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;};
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(url, method, hash);        
-    }
+	host&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://everyrest.appspot.com&amp;quot;&lt;/span&gt;,
+	ajax&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(url, method, hash) {
+ 		hash &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; hash &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; {}; &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// hash may be undefined&lt;/span&gt;
+ 		hash.crossDomain &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+ 		hash.xhrFields &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; {withCredentials&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;};
+ 		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(url, method, hash);		
+ 	}
 });
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_14&#34;&gt;Serializer&lt;/h2&gt;
+&lt;h1 id=&#34;serializer:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Serializer&lt;/h1&gt;
 
 &lt;p&gt;See the &lt;a href=&#34;// http://emberjs.com/api/data/classes/DS.RESTSerializer.html#method_serializeHasMany&#34;&gt;docs&lt;/a&gt; to see how this causes a model to write an array of its &amp;ldquo;has-many&amp;rdquo; ID&amp;rsquo;s to the server. This is not the defualt since most servers take responsibility for tracking relationships in the data.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_15&#34;&gt;&lt;code&gt;app/serializers/application.js&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-serializers-application-js:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/serializers/application.js&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; DS from &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;ember-data&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt; DS.RESTSerializer.extend({
-    serialize&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(record, options) {
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; json &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(record, options);
-        record.eachRelationship(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(name, relationship) {
-          &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (relationship.kind &lt;span style=&#34;color: #666666&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;hasMany&amp;#39;&lt;/span&gt;) {
-            json[name] &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; record.get(name).mapBy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;);
-          }
-        });
-        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; json;
-      }
+	serialize&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(record, options) {
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; json &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;._super(record, options);
+	    record.eachRelationship(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt;(name, relationship) {
+	      &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (relationship.kind &lt;span style=&#34;color: #666666&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;hasMany&amp;#39;&lt;/span&gt;) {
+	        json[name] &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; record.get(name).mapBy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;);
+	      }
+	    });
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; json;
+	  }
 });) 
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_16&#34;&gt;Templates&lt;/h2&gt;
+&lt;h1 id=&#34;templates:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;Templates&lt;/h1&gt;
 
 &lt;p&gt;There is nothing special about the &lt;a href=&#34;http://emberjs.com/guides/templates/handlebars-basics/&#34;&gt;templates&lt;/a&gt; I have used in this app. Here is the template for &lt;code&gt;show&lt;/code&gt; as an example.&lt;/p&gt;
 
-&lt;h4 id=&#34;toc_17&#34;&gt;&lt;code&gt;app/templates/beers/show.hbs&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;app-templates-beers-show-hbs:8b3847fac40f60b0b3d5369f69c57d58&#34;&gt;&lt;code&gt;app/templates/beers/show.hbs&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;{{name}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;{{type}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;Comments&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h4&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;each&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;model.comments&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;
+{{#each model.comments}}
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
-    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;message&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;em&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;user&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/em&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;{{message}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;em&amp;gt;&lt;/span&gt;{{user}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/em&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;each&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;
+{{/each}}
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;Post&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/h4&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Name:&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/br&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;newComment.user&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+{{input value=newComment.user}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Comment:&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/br&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;textarea&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;newComment.message&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;cols&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;40&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #bb60d5&#34;&gt;rows&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #bb60d5&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Comment&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+{{textarea value=newComment.message cols=&amp;quot;40&amp;quot; rows=&amp;quot;4&amp;quot;}}&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;button&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;{{&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;comment&lt;/span&gt;&lt;span style=&#34;border: 1px solid #FF0000&#34;&gt;&amp;#39;}}&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;Comment&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     

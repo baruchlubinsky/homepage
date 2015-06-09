@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Postgres on Baruch Lubinsky </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/tags/postgres/index.xml</link>
+    <title>Postgres on Baruch Lubinsky</title>
+    <link>http://baruch.lubinsky.co.za/tags/postgres/</link>
+    <description>Recent content in Postgres on Baruch Lubinsky</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
-    <updated>Wed, 20 Aug 2014 12:27:12 UTC</updated>
+    <lastBuildDate>Wed, 20 Aug 2014 12:27:12 +0000</lastBuildDate>
+    <atom:link href="http://baruch.lubinsky.co.za/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Rails API backed by Postgres</title>
-      <link>http://localhost:1313/post/2014/08/railsapi/</link>
-      <pubDate>Wed, 20 Aug 2014 12:27:12 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/railsapi/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</link>
+      <pubDate>Wed, 20 Aug 2014 12:27:12 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/railsapi/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;ve recently decided to move my Rails API backend from MongoDB to PostgreSQL. Mongo served me very well during the early stages of development, when I was rapidly iterating the schema, but now that the app is being released, PostgreSQL is a much better option. It is way easier to administer (using a managed instance as described below), and it has the flexibility of JSON-type fields that allows me to easily model my data.&lt;/p&gt;
 
 &lt;p&gt;Here are the step for setting up a &lt;a href=&#34;https://github.com/rails-api/rails-api&#34;&gt;Rails-API&lt;/a&gt; project with a &lt;a href=&#34;http://www.postgresql.org/&#34;&gt;PostgreSQL&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_0&#34;&gt;Development&lt;/h1&gt;
+&lt;h1 id=&#34;development:f382bef6e797ce52b1c162f561612a7b&#34;&gt;Development&lt;/h1&gt;
 
 &lt;p&gt;Install PostgreSQL using &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; and create a user for your application.&lt;/p&gt;
 
@@ -51,7 +52,7 @@ $: rake db:migrate
 $: rake db:setup 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;toc_1&#34;&gt;Production&lt;/h1&gt;
+&lt;h1 id=&#34;production:f382bef6e797ce52b1c162f561612a7b&#34;&gt;Production&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://aws.amazon.com/&#34;&gt;Amazon Web Services&lt;/a&gt; makes it very easy to host Rails applications using &lt;a href=&#34;http://aws.amazon.com/opsworks/&#34;&gt;OpsWorks&lt;/a&gt; and &lt;a href=&#34;http://aws.amazon.com/rds/&#34;&gt;RDS&lt;/a&gt;.&lt;/p&gt;
 

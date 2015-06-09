@@ -14,6 +14,6 @@ The styling use the [Hyde theme](https://github.com/spf13/hyde) for Hugo which i
 View the source [here](https://github.com/baruchlubinsky/homepage).
 
 The website is hosted on S3. Uploading is simple with [S3cmd](http://s3tools.org):
-{{% highlight bash %}}
+{{< highlight bash >}}
 s3cmd sync -P --exclude="DS_Store" public/ s3://baruch.lubinsky.co.za
-{{% /highlight %}}
+{{< highlight >}}

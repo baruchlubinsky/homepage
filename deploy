@@ -1,1 +1,1 @@
-s3cmd sync -P --exclude=DS_Store public/ s3://baruch.lubinsky.co.za
+aws s3 sync --recursive --exclude=DS_Store --acl=public-read public/ s3://baruch.lubinsky.co.za

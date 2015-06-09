@@ -1,83 +1,87 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Appengine on Baruch Lubinsky </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/tags/appengine/index.xml</link>
+    <title>Appengine on Baruch Lubinsky</title>
+    <link>http://baruch.lubinsky.co.za/tags/appengine/</link>
+    <description>Recent content in Appengine on Baruch Lubinsky</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <author>Baruch Lubinsky</author>
     <copyright>Baruch Lubinsky</copyright>
-    <updated>Thu, 14 Aug 2014 15:40:00 UTC</updated>
+    <lastBuildDate>Thu, 14 Aug 2014 15:40:00 +0000</lastBuildDate>
+    <atom:link href="http://baruch.lubinsky.co.za/tags/appengine/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>EveryREST - Let your users own their data</title>
-      <link>http://localhost:1313/post/2014/08/everyrest/</link>
-      <pubDate>Thu, 14 Aug 2014 15:40:00 UTC</pubDate>
-      <author>Baruch Lubinsky</author>
-      <guid>http://localhost:1313/post/2014/08/everyrest/</guid>
+      <link>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</link>
+      <pubDate>Thu, 14 Aug 2014 15:40:00 +0000</pubDate>
+      
+      <guid>http://baruch.lubinsky.co.za/post/2014/08/everyrest/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Motivation&lt;/h2&gt;
+&lt;h1 id=&#34;motivation:1ec025a31dcaf1f734c1111358156512&#34;&gt;Motivation&lt;/h1&gt;
 
 &lt;p&gt;A lot of my work is on cloud applications. Developing software to be hosted in the cloud offers many advantages over purchasing and running your own servers. However it also presents a number of challenges. One of the biggest drawbacks relates to the privacy of users&amp;rsquo; data. A typical approach is to have a multi-tenant data store, such that each user can only access their own data. This architecture has a problem in that the system administrator has access to the whole database and therefore every user&amp;rsquo;s data. The alternative I&amp;rsquo;m proposing here is that the user should be the only person (assuming we can trust the service provider) with access to their data.&lt;/p&gt;
 
 &lt;p&gt;Cloud computing services have become very advanced and easy to use. Why not let each user own their own instance of a database and distribute a front-end separately? With that in mind, I developed &lt;a href=&#34;https://github.com/baruchlubinsky/everyrest&#34;&gt;EveryREST&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Introduction&lt;/h2&gt;
+&lt;h1 id=&#34;introduction:1ec025a31dcaf1f734c1111358156512&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;EveryREST is little more than a RESTful wrapper for the &lt;a href=&#34;https://developers.google.com/datastore/&#34;&gt;Google Cloud Datastore&lt;/a&gt;. By RESTful here I mean designed to be a back-end for &lt;a href=&#34;http://emberjs.com/guides/models/&#34;&gt;Ember Data&lt;/a&gt;, using the &lt;a href=&#34;http://emberjs.com/guides/models/the-rest-adapter/&#34;&gt;REST Adapter&lt;/a&gt;, with minimal configuration. The program does not handle any application logic, that must be done by the client side application (or an intermediate web service). Consequently developers can be confident that the back-end will &amp;ldquo;never&amp;rdquo; have to be updated. Any new features are added to the front-end application, which is shared by all users. The only information about users that needs to be stored centrally is reference to their instance of EveryREST, that is then secured by their Google account.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;This is a work in progress. I know that the webservice works, but I have not tried to secure it to using Google acocunts yet.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;API&lt;/h2&gt;
+&lt;h1 id=&#34;api:1ec025a31dcaf1f734c1111358156512&#34;&gt;API&lt;/h1&gt;
 
 &lt;p&gt;The web service uses &lt;a href=&#34;http://godoc.org/github.com/baruchlubinsky/beerapi/api&#34;&gt;beerapi&lt;/a&gt; to handle requests. It responds to the following URLs. Where &amp;ldquo;beers&amp;rdquo; is a place holder for any resource name.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_3&#34;&gt;GET /beers/&lt;/h3&gt;
+&lt;h3 id=&#34;get-beers:1ec025a31dcaf1f734c1111358156512&#34;&gt;GET /beers/&lt;/h3&gt;
 
 &lt;p&gt;Returns a list of the beer records. Example response:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{
   &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;beers&amp;quot;&lt;/span&gt;: [
     {&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Castle&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Lager&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;:[&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;]},
     {&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Woodhouse&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Ale&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;:[&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;3&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;5&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;7&amp;quot;&lt;/span&gt;]}
   ]
 }
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_4&#34;&gt;GET /beers/id&lt;/h3&gt;
+&lt;h3 id=&#34;get-beers-id:1ec025a31dcaf1f734c1111358156512&#34;&gt;GET /beers/id&lt;/h3&gt;
 
 &lt;p&gt;Get a single record.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{
   &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;beer&amp;quot;&lt;/span&gt;: [
     {&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Castle&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Lager&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;:[&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;]},
   ]
 }
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_5&#34;&gt;GET /beers?ids[]=1&amp;amp;ids[]=2&lt;/h3&gt;
+&lt;h3 id=&#34;get-beers-ids-1-ids-2:1ec025a31dcaf1f734c1111358156512&#34;&gt;GET /beers?ids[]=1&amp;amp;ids[]=2&lt;/h3&gt;
 
 &lt;p&gt;Get all the specified records, response is the same as that for GET.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_6&#34;&gt;POST /beers/&lt;/h3&gt;
+&lt;h3 id=&#34;post-beers:1ec025a31dcaf1f734c1111358156512&#34;&gt;POST /beers/&lt;/h3&gt;
 
 &lt;p&gt;Create a new record. Example request payload:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;{
   &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;beer&amp;quot;&lt;/span&gt;: {&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Castle&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Lager&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;:[]}
 }
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_7&#34;&gt;PUT /beers/id&lt;/h3&gt;
+&lt;h3 id=&#34;put-beers-id:1ec025a31dcaf1f734c1111358156512&#34;&gt;PUT /beers/id&lt;/h3&gt;
 
 &lt;p&gt;Update the specified record. Request is the same as POST.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_8&#34;&gt;DELETE /beers/id&lt;/h3&gt;
+&lt;h3 id=&#34;delete-beers-id:1ec025a31dcaf1f734c1111358156512&#34;&gt;DELETE /beers/id&lt;/h3&gt;
 
 &lt;p&gt;Delete the specified record.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_9&#34;&gt;Deploy&lt;/h2&gt;
+&lt;h1 id=&#34;deploy:1ec025a31dcaf1f734c1111358156512&#34;&gt;Deploy&lt;/h1&gt;
 
 &lt;p&gt;Anyone can deploy a version of this web service for themselves.&lt;/p&gt;
 
@@ -90,9 +94,9 @@
 &lt;li&gt;&lt;code&gt;$ goapp deploy app.yaml&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;toc_10&#34;&gt;Client application&lt;/h2&gt;
+&lt;h1 id=&#34;client-application:1ec025a31dcaf1f734c1111358156512&#34;&gt;Client application&lt;/h1&gt;
 
-&lt;p&gt;The service doesn&amp;rsquo;t care what kind of application consumes it, and is set up with CORS allowing any IP by default. Checkout my &lt;a href=&#34;/post/2014/08/beerdemo&#34;&gt;post&lt;/a&gt; for an example of a very simple Ember application powered by this server.&lt;/p&gt;
+&lt;p&gt;The service doesn&amp;rsquo;t care what kind of application consumes it, and is set up with CORS allowing any IP by default. Checkout my &lt;a href=&#34;http://baruch.lubinsky.co.za/post/2014/08/beerdemo&#34;&gt;post&lt;/a&gt; for an example of a very simple Ember application powered by this server.&lt;/p&gt;
 </description>
     </item>
     

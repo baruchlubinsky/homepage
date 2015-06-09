@@ -1,7 +1,7 @@
-{{ template "theme/partials/head.html" . }}
+{{ partial "head.html" . }}
 <body class="layout-reverse">
 
-{{ template "theme/partials/sidebar.html" . }}
+{{ partial "sidebar.html" . }}
 
   <div class="content container">
     <h1>Home</h1>
@@ -27,8 +27,12 @@
         <p>A minimal web server for <a href="https://appengine.google.com/">Google App Engine</a>. The server does not handle any of the application logic. It is an implementation of <a href="http://godoc.org/github.com/baruchlubinsky/beerapi">Beer API</a> using the <a href="https://developers.google.com/appengine/docs/go/datastore/">App Engine Datastore</a>. My thinking is that all the logic can be handled by an Ember App using the <a href="http://emberjs.com/guides/models/the-rest-adapter/">REST Adapter</a>. These ease of deploying this code to App Engine makes it possible to allow each user to own their instance of the server.</p> 
       </article>
       <h2>Work</h2>
-      <p><a href="https://hiv.sanbi.ac.za">SANBI - HIV Drug Resistance Pipeline</a></p>
+      <h3>Current</h3>
+      <p><a href="http://hyraxbio.co.za">Hyrax Biosciences</a></p>
+      <h3>Past</h3>
+      <p><a href="http://hiv.sanbi.ac.za">South African National Bioinfromatics Institute - HIV Group</a></p>
       <p><a href="http://www.presentsinthepost.co.za">Presents in the Post</a></p>
+      <p><a href="http://opsi.co.za/">OPSI Systems</a></p>
       <h2>Music</h2>
       <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/13121319&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=true&amp;visual=false&amp;start_track=0&show_artwork=true"></iframe>
       <h2>Links</h2>

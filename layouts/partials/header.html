@@ -1,4 +1,5 @@
-{{ template "theme/partials/head.html" . }}
+{{ partial "head.html" . }}
+<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/me.css">
 <body class="layout-reverse">
-{{ template "theme/partials/sidebar.html" . }}
+{{ partial "sidebar.html" . }}
     <div class="content container">

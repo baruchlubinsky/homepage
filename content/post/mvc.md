@@ -1,7 +1,7 @@
 +++
 Categories = ["Development", "Opinion"]
 Description = "A discussion on design patterns from the perspective of Ember.js and Ruby on Rails."
-Tags = ["development", "rails", "ember"]
+Tags = ["development", "rails", "ember", "opinion"]
 date = 2014-10-11T08:42:59Z
 menu = "main"
 title = "MVC is dead, long live MVC"

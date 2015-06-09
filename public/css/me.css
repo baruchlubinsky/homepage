@@ -21,10 +21,23 @@ nav#TableOfContents > ul > li > ul > li > ul {
 
 nav#TableOfContents > ul, nav#TableOfContents > ul > li > ul  {
 	list-style: none;
+	margin-bottom: 0;
 }
 
 div.acknowledge {
 	text-align: right;
 	width: 100%;
 	font-size: small;
+}
+
+div.highlight pre {
+	width: 200%;
+}
+
+div.highlight {
+	overflow-x: scroll;
+}
+
+pre {
+	font-size: 0.7rem;
 }
